@@ -740,227 +740,6 @@
         border-radius: 0;
       }
     }
-
-    /* ===== GITHUB PAGES: LARGE PHONE PRESENTATION ===== */
-    /* RESPONSIVE LAYOUT — mobile invitation proportions */
-    @media (max-width: 768px) {
-      html, body {
-        width: 100%;
-        min-width: 0;
-        margin: 0;
-        padding: 0;
-        overflow-x: clip;
-      }
-
-      body {
-        align-items: stretch;
-        background: var(--card-bg);
-        background-image: none;
-        padding: 0;
-      }
-
-      .palace-suite {
-        width: 100%;
-        max-width: none;
-        margin: 0;
-        padding: 0 0 calc(6.2rem + env(safe-area-inset-bottom, 0px));
-      }
-
-      .mehrab-crown {
-        display: block;
-        width: 100%;
-        height: clamp(145px, 31vw, 225px);
-        margin: 0 0 -3px;
-      }
-
-      .palace-card {
-        width: 100%;
-        border-radius: 0;
-        border-left: 3px solid var(--border-gold);
-        border-right: 3px solid var(--border-gold);
-        border-bottom: 3px solid var(--border-gold);
-        padding: clamp(1.8rem, 7vw, 3rem) clamp(1rem, 6.2vw, 2rem) 3.5rem;
-        box-shadow: none;
-      }
-
-      .palace-inner-frame {
-        inset: 0 7px 7px;
-        border-radius: 0;
-      }
-
-      .suite-top-bar {
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr) auto;
-        align-items: center;
-        gap: clamp(5px, 2vw, 12px);
-        margin: 0 0 clamp(1.5rem, 6vw, 2.5rem);
-        padding-top: 0;
-      }
-
-      .seal-back-btn {
-        min-height: 40px;
-        padding: .55rem clamp(.55rem, 2.5vw, 1rem);
-        gap: 5px;
-        font-size: clamp(.62rem, 2.5vw, .82rem);
-        letter-spacing: .6px;
-      }
-
-      .suite-bismillah {
-        min-width: 0;
-        font-size: clamp(1.15rem, 5.2vw, 1.65rem);
-        line-height: 1.65;
-        text-align: center;
-      }
-
-      .suite-couple-banner {
-        margin: 0 auto clamp(1.5rem, 6vw, 2.2rem);
-        padding-bottom: clamp(1.2rem, 5vw, 1.8rem);
-      }
-
-      .suite-together {
-        font-size: clamp(.68rem, 2.9vw, .9rem);
-        letter-spacing: clamp(1px, .55vw, 2.5px);
-        line-height: 1.5;
-        margin-bottom: .55rem;
-      }
-
-      .suite-couple-names {
-        font-size: clamp(2rem, 8.6vw, 3.15rem);
-        line-height: 1.22;
-        overflow-wrap: anywhere;
-      }
-
-      .suite-couple-names .script-amp {
-        font-size: .95em;
-        margin: 0 .12em;
-      }
-
-      .event-tabs-nav {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: .25rem;
-        padding: .35rem;
-        margin-bottom: clamp(2rem, 7vw, 2.8rem);
-      }
-
-      .event-tab-btn {
-        min-width: 0;
-        min-height: 68px;
-        padding: .65rem .15rem;
-        gap: 4px;
-      }
-
-      .event-tab-btn .tab-title {
-        font-size: clamp(.78rem, 3.5vw, 1rem);
-        letter-spacing: .4px;
-      }
-
-      .event-tab-btn .tab-date {
-        font-size: clamp(.62rem, 2.7vw, .78rem);
-        white-space: nowrap;
-      }
-
-      .event-ornament { font-size: 1rem; margin-bottom: .7rem; }
-      .event-category {
-        font-size: clamp(.72rem, 3vw, .9rem);
-        letter-spacing: clamp(1px, .5vw, 2px);
-      }
-      .event-main-title {
-        font-size: clamp(2.2rem, 9vw, 3.2rem);
-        line-height: 1.15;
-      }
-      .barat-names-highlight { font-size: clamp(1.1rem, 4.7vw, 1.5rem); }
-      .date-ribbon {
-        max-width: 100%;
-        padding: .55rem .7rem;
-        font-size: clamp(.78rem, 3.4vw, 1rem);
-        line-height: 1.45;
-        flex-wrap: wrap;
-      }
-      .event-tagline {
-        font-size: clamp(.9rem, 3.8vw, 1.1rem);
-        line-height: 1.5;
-      }
-      .event-description {
-        font-size: clamp(.9rem, 3.7vw, 1.05rem);
-        line-height: 1.7;
-      }
-
-      .itinerary-box {
-        padding: clamp(1rem, 4vw, 1.5rem);
-        margin-bottom: 1.6rem;
-      }
-      .timeline-track { gap: 1rem; }
-      .timeline-info { font-size: clamp(.88rem, 3.6vw, 1rem); }
-      .timeline-badge { font-size: clamp(.75rem, 3vw, .9rem); padding: .4rem .65rem; }
-
-      .venue-arch-card {
-        padding: 2rem .8rem 1.3rem;
-        margin-bottom: 1.8rem;
-      }
-      .venue-title { font-size: clamp(1.45rem, 6vw, 2rem); line-height: 1.25; }
-      .venue-sub { font-size: clamp(.9rem, 3.7vw, 1.05rem); }
-      .action-pill-btn {
-        min-height: 46px;
-        padding: .7rem 1rem;
-        font-size: clamp(.78rem, 3.2vw, .95rem);
-      }
-
-      .countdown-grid { gap: .35rem; }
-      .flip-tile { padding: .9rem .15rem; }
-      .flip-num { font-size: clamp(1.5rem, 7vw, 2.2rem); }
-      .flip-label { font-size: clamp(.62rem, 2.6vw, .75rem); }
-
-      .blessing-suite { padding: 1.4rem .8rem; margin: 1.7rem auto 1.2rem; }
-      .royal-input { min-height: 48px; padding: .75rem; font-size: 1rem; }
-
-      .floating-controls {
-        right: max(12px, env(safe-area-inset-right, 0px));
-        bottom: calc(96px + env(safe-area-inset-bottom, 0px));
-        gap: 10px;
-      }
-      .float-btn {
-        width: clamp(48px, 13vw, 58px);
-        height: clamp(48px, 13vw, 58px);
-        font-size: 1.2rem;
-      }
-
-      .bottom-event-nav {
-        left: 0;
-        right: 0;
-        width: 100%;
-        padding: .45rem .55rem calc(.5rem + env(safe-area-inset-bottom, 0px));
-      }
-      .bottom-event-nav-inner {
-        width: 100%;
-        max-width: 100%;
-        gap: .2rem;
-        padding: .28rem;
-      }
-      .bottom-nav-btn {
-        min-width: 0;
-        min-height: 48px;
-        padding: .6rem .15rem;
-        gap: 4px;
-        font-size: clamp(.68rem, 3vw, .85rem);
-        letter-spacing: .2px;
-      }
-      .bottom-nav-btn i { font-size: .9rem; }
-    }
-
-    @media (max-width: 380px) {
-      .suite-top-bar { gap: 4px; }
-      .seal-back-btn { padding: .5rem .45rem; font-size: .6rem; }
-      .suite-couple-names { font-size: clamp(1.8rem, 8.2vw, 2.35rem); }
-      .event-tab-btn .tab-title { font-size: .72rem; }
-      .event-tab-btn .tab-date { font-size: .58rem; }
-      .date-ribbon { letter-spacing: 0; }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .palace-suite { max-width: min(720px, calc(100% - 2rem)); }
-      .palace-card { padding-left: clamp(1.5rem, 4vw, 2rem); padding-right: clamp(1.5rem, 4vw, 2rem); }
-    }
-
   </style>
 </head>
 <body>
@@ -1389,32 +1168,12 @@
       window.visualViewport.addEventListener('scroll', syncBottomNavViewport);
     }
 
-    // Lightweight heart animation: capped particles, low-resolution canvas, 30 FPS.
     const canvas = document.getElementById('heartsCanvas');
-    const ctx = canvas.getContext('2d', { alpha: true });
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let lastFrame = 0;
-    const isMobile = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const frameInterval = isMobile ? 1000 / 20 : 1000 / 30;
-    const MAX_HEARTS = isMobile ? 6 : 22;
-    const BACKGROUND_HEARTS = isMobile ? 3 : 12;
-    const BURST_HEARTS = isMobile ? 2 : 8;
-    const burstCooldown = isMobile ? 1200 : 450;
-    let lastBurstAt = 0;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-    function resizeHeartCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      // Avoid expensive high-DPI drawing on phones.
-      const dpr = Math.min(window.devicePixelRatio || 1, 1);
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    window.addEventListener('resize', resizeHeartCanvas, { passive: true });
-    resizeHeartCanvas();
+    window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
 
     const heartPalette = ['#E2CDB8', '#D4BFA8', '#CBB192', '#F5EFE8', '#FFFFFF'];
 
@@ -1422,78 +1181,39 @@
       constructor(isBurst = false) { this.reset(isBurst); }
       reset(isBurst = false) {
         this.x = Math.random() * width;
-        this.y = isBurst ? (Math.random() * Math.min(height * 0.35, 240) - 30) : (-20 - Math.random() * height);
-        this.size = isMobile ? (Math.random() * 3 + 3) : (Math.random() * 6 + 4);
-        this.speedY = isBurst ? (Math.random() * 1.1 + 0.6) : (Math.random() * 0.5 + 0.25);
-        this.swayAmp = Math.random() * 0.7 + 0.15;
-        this.swayFreq = Math.random() * 0.015 + 0.008;
-        this.phase = Math.random() * Math.PI * 2;
-        this.rotSpeed = (Math.random() - 0.5) * 0.012;
+        this.y = isBurst ? (Math.random() * height * 0.4 - 50) : (-20 - Math.random() * height);
+        this.size = Math.random() * 10 + 5;
+        this.speedY = isBurst ? (Math.random() * 2 + 1) : (Math.random() * 1.2 + 0.5);
+        this.swayAmp = Math.random() * 1.2 + 0.3; this.swayFreq = Math.random() * 0.02 + 0.01;
+        this.phase = Math.random() * Math.PI * 2; this.rotSpeed = (Math.random() - 0.5) * 0.02;
         this.rot = Math.random() * Math.PI * 2;
-        this.opacity = Math.random() * 0.35 + 0.25;
+        this.opacity = Math.random() * 0.6 + 0.4; 
         this.color = heartPalette[Math.floor(Math.random() * heartPalette.length)];
-        this.isBurst = isBurst;
-        this.dead = false;
+        this.isBurst = isBurst; this.dead = false;
       }
       update() {
-        this.phase += this.swayFreq;
-        this.y += this.speedY;
-        this.x += Math.sin(this.phase) * this.swayAmp;
+        this.phase += this.swayFreq; this.y += this.speedY; this.x += Math.sin(this.phase) * this.swayAmp;
         this.rot += this.rotSpeed;
-        if (this.y > height + 16) {
-          if (this.isBurst) this.dead = true;
-          else { this.reset(false); this.y = -16; }
-        }
+        if (this.y > height + 20) { if (this.isBurst) { this.dead = true; } else { this.reset(false); this.y = -20; } }
       }
       draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rot);
-        ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = this.color;
-        const s = this.size;
-        ctx.beginPath();
-        ctx.moveTo(0, s * 0.3);
-        ctx.bezierCurveTo(-s * 0.5, -s * 0.3, -s, s * 0.2, 0, s);
-        ctx.bezierCurveTo(s, s * 0.2, s * 0.5, -s * 0.3, 0, s * 0.3);
-        ctx.fill();
-        ctx.restore();
+        ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rot); ctx.globalAlpha = this.opacity; ctx.fillStyle = this.color; ctx.shadowBlur = 4; ctx.shadowColor = "rgba(120, 90, 70, 0.2)";
+        const s = this.size; ctx.beginPath(); ctx.moveTo(0, s*0.3); ctx.bezierCurveTo(-s*0.5,-s*0.3, -s,s*0.2, 0,s); ctx.bezierCurveTo(s,s*0.2, s*0.5,-s*0.3, 0,s*0.3); ctx.fill(); ctx.restore();
       }
     }
 
     const hearts = [];
-    if (!prefersReducedMotion) {
-      for (let i = 0; i < BACKGROUND_HEARTS; i++) hearts.push(new HeartDrop(false));
-    }
-
-    function burstHearts() {
-      const now = performance.now();
-      if (now - lastBurstAt < burstCooldown) return;
-      lastBurstAt = now;
-      // Never allow repeated taps to create an unlimited particle backlog.
-      const room = Math.max(0, MAX_HEARTS - hearts.length);
-      const count = Math.min(BURST_HEARTS, room);
-      if (prefersReducedMotion) return;
-      for (let i = 0; i < count; i++) hearts.push(new HeartDrop(true));
-    }
-
-    function animateHearts(timestamp) {
-      requestAnimationFrame(animateHearts);
-      if (document.hidden || timestamp - lastFrame < frameInterval) return;
-      lastFrame = timestamp;
+    for(let i=0; i<40; i++) hearts.push(new HeartDrop(false));
+    function burstHearts() { for(let i=0; i<40; i++) hearts.push(new HeartDrop(true)); }
+    function animateHearts() {
       ctx.clearRect(0, 0, width, height);
-      for (let i = hearts.length - 1; i >= 0; i--) {
-        hearts[i].update();
-        hearts[i].draw();
-        if (hearts[i].dead) hearts.splice(i, 1);
+      for(let i = hearts.length - 1; i >= 0; i--){
+        hearts[i].update(); hearts[i].draw(); if(hearts[i].dead) hearts.splice(i, 1);
       }
+      requestAnimationFrame(animateHearts);
     }
 
-    window.onload = function() {
-      updateCountdowns();
-      setInterval(updateCountdowns, 1000);
-      requestAnimationFrame(animateHearts);
-    };
+    window.onload = function() { updateCountdowns(); setInterval(updateCountdowns, 1000); animateHearts(); };
   </script>
 </body>
 </html>
