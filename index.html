@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Saad & Khadija · Wedding Invitation</title>
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -716,6 +716,404 @@
 
       .palace-inner-frame { inset: 8px 8px 0 8px; border-bottom: none; }
     }
+  
+
+    /* ===== RESPONSIVE FIT: MOBILE-FIRST, READABLE, VERTICAL SCROLL ===== */
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-y: auto;
+      overscroll-behavior-y: auto;
+    }
+
+    /* Keep the invitation centered and comfortably sized on larger screens. */
+    .envelope-stage,
+    .palace-suite {
+      width: min(100%, 680px);
+    }
+
+    /* Fixed navigation stays anchored to the visible screen while the page scrolls. */
+    .bottom-event-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 8px max(10px, env(safe-area-inset-left))
+        calc(8px + env(safe-area-inset-bottom, 0px))
+        max(10px, env(safe-area-inset-right));
+      z-index: 1000;
+      transform: translateY(110%);
+      will-change: transform;
+    }
+
+    .bottom-event-nav.visible {
+      transform: translateY(0);
+    }
+
+    .bottom-event-nav-inner {
+      width: min(100%, 500px);
+      margin: 0 auto;
+    }
+
+    @media (max-width: 680px) {
+      html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+      }
+
+      body {
+        display: block;
+        padding: 0;
+        background: var(--card-bg);
+        padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+      }
+
+      /* Use the full mobile viewport: no miniature card surrounded by margins. */
+      .envelope-stage,
+      .palace-suite {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .envelope-stage {
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 16px 0 100px;
+        align-items: center;
+      }
+
+      .royal-envelope {
+        width: 100%;
+        min-height: min(720px, calc(100dvh - 32px));
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        padding: clamp(34px, 8vh, 72px) clamp(18px, 5vw, 28px);
+      }
+
+      .palace-suite {
+        padding-bottom: 0;
+        animation: none;
+      }
+
+      .mehrab-crown {
+        width: 100%;
+        height: clamp(70px, 17vw, 110px);
+      }
+
+      .palace-card {
+        width: 100%;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        padding: 22px clamp(16px, 4.5vw, 26px)
+          calc(28px + env(safe-area-inset-bottom, 0px));
+        box-shadow: none;
+        overflow: visible;
+      }
+
+      .palace-inner-frame {
+        inset: 8px 7px 8px;
+        border: 1.5px solid var(--border-rose);
+        border-radius: 0;
+      }
+
+      .suite-content {
+        width: 100%;
+      }
+
+      /* Larger, fluid type: text reflows instead of shrinking the whole page. */
+      .env-names h1 {
+        font-size: clamp(2.5rem, 10vw, 3.4rem);
+        overflow-wrap: anywhere;
+      }
+
+      .env-names .amp {
+        font-size: clamp(2.4rem, 9vw, 3rem);
+      }
+
+      .env-kicker,
+      .wax-tap-hint {
+        font-size: clamp(0.78rem, 3vw, 0.95rem);
+      }
+
+      .suite-top-bar {
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .suite-bismillah {
+        font-size: clamp(0.9rem, 3.5vw, 1.15rem);
+        white-space: normal;
+        text-align: center;
+      }
+
+      .seal-back-btn {
+        min-height: 42px;
+        padding: 9px 12px;
+        font-size: clamp(0.68rem, 2.6vw, 0.8rem);
+      }
+
+      .suite-couple-names {
+        font-size: clamp(1.8rem, 7vw, 2.45rem);
+        overflow-wrap: anywhere;
+      }
+
+      .suite-together,
+      .event-category,
+      .venue-label,
+      .countdown-heading,
+      .itinerary-header {
+        font-size: clamp(0.75rem, 2.8vw, 0.9rem);
+      }
+
+      /* Main event tabs remain readable and easy to tap. */
+      .event-tabs-nav {
+        gap: 5px;
+        padding: 5px;
+        margin-bottom: 24px;
+      }
+
+      .event-tab-btn {
+        min-width: 0;
+        min-height: 58px;
+        padding: 9px 4px;
+      }
+
+      .event-tab-btn .tab-title {
+        font-size: clamp(0.82rem, 3.2vw, 1rem);
+        letter-spacing: 0.4px;
+      }
+
+      .event-tab-btn .tab-date {
+        font-size: clamp(0.68rem, 2.5vw, 0.78rem);
+      }
+
+      .event-main-title {
+        font-size: clamp(2.35rem, 9vw, 3.1rem);
+        line-height: 1.12;
+      }
+
+      .date-ribbon {
+        max-width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        font-size: clamp(0.85rem, 3.3vw, 1rem);
+        padding: 10px 12px;
+      }
+
+      .event-tagline {
+        font-size: clamp(1rem, 4vw, 1.15rem);
+        line-height: 1.5;
+      }
+
+      .event-description {
+        font-size: clamp(1rem, 4vw, 1.15rem);
+        line-height: 1.75;
+      }
+
+      .itinerary-box,
+      .venue-arch-card,
+      .blessing-suite {
+        width: 100%;
+        padding: 22px 16px;
+        margin-bottom: 22px;
+      }
+
+      .timeline-track {
+        gap: 18px;
+      }
+
+      .timeline-info {
+        font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+      }
+
+      .timeline-badge {
+        font-size: clamp(0.82rem, 3.2vw, 0.95rem);
+        padding: 7px 10px;
+      }
+
+      .venue-arch-card {
+        border-radius: 78px 78px 12px 12px;
+        padding-top: 34px;
+      }
+
+      .venue-title {
+        font-size: clamp(1.45rem, 5.8vw, 1.8rem);
+        overflow-wrap: anywhere;
+      }
+
+      .venue-sub {
+        font-size: clamp(1rem, 3.8vw, 1.12rem);
+        line-height: 1.5;
+      }
+
+      .venue-actions {
+        gap: 10px;
+      }
+
+      .action-pill-btn {
+        min-height: 48px;
+        justify-content: center;
+        padding: 12px 18px;
+        font-size: clamp(0.82rem, 3.1vw, 0.95rem);
+        letter-spacing: 0.5px;
+      }
+
+      .countdown-grid {
+        gap: clamp(5px, 2vw, 10px);
+      }
+
+      .flip-tile {
+        min-width: 0;
+        padding: 13px 3px;
+      }
+
+      .flip-num {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+
+      .flip-label {
+        font-size: clamp(0.62rem, 2.4vw, 0.75rem);
+        letter-spacing: 0.4px;
+      }
+
+      .blessing-title {
+        font-size: 1rem;
+      }
+
+      .blessing-sub {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      .royal-input {
+        min-height: 50px;
+        padding: 12px 14px;
+        font-size: 16px; /* Prevents automatic input zoom on iOS. */
+      }
+
+      .blessing-feed {
+        max-height: 240px;
+      }
+
+      .blessing-note {
+        font-size: 0.95rem;
+        line-height: 1.55;
+        padding: 12px;
+      }
+
+      .blessing-note strong {
+        font-size: 0.9rem;
+      }
+
+      .suite-footer {
+        font-size: 1rem;
+        padding-bottom: 12px;
+      }
+
+      /* Compact navigation scales to narrow phones but remains thumb-friendly. */
+      .bottom-event-nav {
+        padding-top: 6px;
+        padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
+        background: linear-gradient(
+          180deg,
+          rgba(229, 216, 197, 0.72),
+          rgba(229, 216, 197, 0.98) 35%,
+          #E5D8C5 100%
+        );
+      }
+
+      .bottom-event-nav-inner {
+        max-width: 100%;
+        gap: 3px;
+        padding: 4px;
+        border-radius: 18px;
+      }
+
+      .bottom-nav-btn {
+        min-width: 0;
+        min-height: 44px;
+        padding: 8px 4px;
+        gap: 5px;
+        font-size: clamp(0.68rem, 2.8vw, 0.82rem);
+        letter-spacing: 0.2px;
+        white-space: nowrap;
+      }
+
+      .bottom-nav-btn i {
+        font-size: clamp(0.78rem, 3vw, 0.95rem);
+      }
+
+      .floating-controls {
+        right: 9px;
+        bottom: calc(74px + env(safe-area-inset-bottom, 0px));
+        gap: 7px;
+      }
+
+      .float-btn {
+        width: clamp(36px, 10vw, 42px);
+        height: clamp(36px, 10vw, 42px);
+        font-size: 0.9rem;
+      }
+
+      .royal-toast {
+        top: calc(10px + env(safe-area-inset-top, 0px));
+        max-width: calc(100vw - 24px);
+        white-space: normal;
+        text-align: center;
+        justify-content: center;
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .suite-top-bar {
+        gap: 4px;
+      }
+
+      .seal-back-btn {
+        padding: 8px;
+        font-size: 0.64rem;
+      }
+
+      .bottom-nav-btn {
+        flex-direction: column;
+        gap: 2px;
+        min-height: 48px;
+        font-size: 0.66rem;
+      }
+
+      .bottom-nav-btn i {
+        font-size: 0.82rem;
+      }
+
+      .timeline-item {
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1042,7 +1440,7 @@
       // Scroll smoothly to the top of the card (fixes jumping when zoomed)
       const suiteContent = document.getElementById('suiteContent');
       if (suiteContent) {
-        suiteContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
