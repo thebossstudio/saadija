@@ -36,7 +36,7 @@
 
     html, body {
       width: 100%;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Prevents horizontal scrolling */
     }
 
     body {
@@ -64,14 +64,14 @@
 
     /* ===== STAGE 1: ENVELOPE ===== */
     .envelope-stage {
-      max-width: 600px;
       width: 90%;
+      max-width: 500px; /* Adjusted to fit mobiles better */
       position: relative;
       z-index: 15;
       perspective: 1400px;
       animation: floatEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1);
       margin-top: 3rem;
-      margin-bottom: 5rem;
+      margin-bottom: 6rem; /* Space for bottom nav */
     }
 
     @keyframes floatEntrance {
@@ -256,13 +256,13 @@
     /* ===== STAGE 2: PALACE SUITE (MAIN CARD) ===== */
     .palace-suite {
       display: none; 
-      max-width: 680px;
-      width: 90%;
+      width: 92%; /* Takes up 92% of screen */
+      max-width: 680px; /* Limits maximum width on PC */
       position: relative;
       z-index: 15;
       animation: suiteUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      margin-top: 3rem;
-      margin-bottom: 5rem;
+      margin-top: 2rem;
+      margin-bottom: 6rem; /* Space for fixed bottom nav */
     }
 
     @keyframes suiteUnfold {
@@ -286,7 +286,7 @@
       box-shadow: 0 30px 60px rgba(120, 90, 70, 0.12), 0 5px 15px rgba(0, 0, 0, 0.02);
       border: 4px solid var(--border-gold);
       border-top: none; 
-      overflow: hidden;
+      overflow: hidden; /* Crucial: Stops SVG lines from breaking out and causing zooming */
     }
 
     .palace-inner-frame {
@@ -299,13 +299,14 @@
       z-index: 3;
     }
 
+    /* Corner Floral Accents - Kept inside card bounds */
     .floral-corner {
       position: absolute;
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.4;
+      opacity: 0.5;
     }
     .floral-bl { bottom: 0; left: 0; }
     .floral-br { bottom: 0; right: 0; transform: scaleX(-1); }
@@ -453,7 +454,7 @@
     }
 
     .event-tagline { font-weight: 500; font-style: italic; color: var(--text-muted); margin-bottom: 1.5rem; }
-    .event-description { font-weight: 400; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; max-width: 500px; margin: 0 auto 1.5rem; }
+    .event-description { font-weight: 400; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; max-width: 100%; margin: 0 auto 1.5rem; }
 
     /* Itinerary Timeline */
     .itinerary-box {
@@ -461,7 +462,7 @@
       border: 2px solid var(--border-gold);
       border-radius: 12px;
       padding: 1.2rem 1.5rem;
-      max-width: 450px;
+      max-width: 100%;
       margin: 0 auto 1.5rem;
       text-align: left;
       box-shadow: 0 4px 10px rgba(120, 90, 70, 0.04);
@@ -476,7 +477,7 @@
 
     /* Venue Arch Card */
     .venue-arch-card {
-      max-width: 450px;
+      max-width: 100%;
       margin: 0 auto 1.5rem;
       background: #FFFFFF;
       border: 3px solid var(--border-gold);
@@ -512,7 +513,7 @@
     .btn-outline-gold:hover { background: #F5EFE8; transform: translateY(-2px); }
 
     /* Countdown */
-    .countdown-section { margin: 1.5rem auto 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(212, 191, 168, 0.4); max-width: 450px; }
+    .countdown-section { margin: 1.5rem auto 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(212, 191, 168, 0.4); max-width: 100%; }
     .countdown-heading { font-weight: 700; font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-main); margin-bottom: 1rem; }
     .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
     .flip-tile {
@@ -529,7 +530,7 @@
 
     /* GUEST BLESSINGS */
     .blessing-suite {
-      max-width: 450px;
+      max-width: 100%;
       margin: 1.5rem auto 1rem;
       background: #F5EFE8;
       border: 2px solid var(--border-gold);
@@ -651,8 +652,6 @@
       transform: translateY(100%);
       transition: transform 0.5s var(--ease-royal);
       width: 100%;
-      margin: 0;
-      padding-bottom: 1rem;
     }
     .bottom-event-nav.visible { transform: translateY(0); }
 
@@ -697,25 +696,29 @@
     }
     .bottom-nav-btn.active i { color: var(--border-rose); }
 
-    /* ===== RESPONSIVE (Mobile Fixes) ===== */
+    /* ===== RESPONSIVE SCALING FOR MOBILE ===== */
     @media (max-width: 680px) {
       .royal-envelope { padding: 2.5rem 1.2rem 2rem; border-width: 2px; }
       .env-names h1 { font-size: 2.3rem; }
-      .palace-card { padding: 1.2rem 1.2rem 2.8rem; border-width: 3px; }
-      .suite-couple-names { font-size: 1.7rem; }
+      
+      .palace-card { padding: 1.2rem 1.2rem 3rem; border-width: 3px; }
+      .suite-couple-names { font-size: 1.6rem; }
+      .suite-couple-names .script-amp { font-size: 1.8rem; }
+      
       .event-main-title { font-size: 2.3rem; }
       .countdown-grid { gap: 0.4rem; }
       .flip-num { font-size: 1.5rem; }
-      .venue-arch-card { border-radius: 90px 90px 10px 10px; border-width: 2px; }
+      .venue-arch-card { border-radius: 90px 90px 10px 10px; border-width: 2px; padding: 1.5rem 1rem 1rem; }
       .venue-arch-card::before { border-radius: 84px 84px 8px 8px; }
       .blessing-row { flex-direction: column; gap: 0.6rem; }
       .event-tabs-nav { gap: 0.2rem; }
     }
+    
     @media (max-width: 400px) {
       .env-names h1 { font-size: 1.9rem; }
-      .suite-couple-names { font-size: 1.4rem; }
-      .suite-couple-names .script-amp { font-size: 1.6rem; }
-      .event-tab-btn .tab-title { font-size: 0.7rem; }
+      .suite-couple-names { font-size: 1.3rem; }
+      .suite-couple-names .script-amp { font-size: 1.5rem; }
+      .event-tab-btn .tab-title { font-size: 0.65rem; }
       .event-tab-btn .tab-date { font-size: 0.5rem; }
       .timeline-info { font-size: 0.85rem; }
       .flip-num { font-size: 1.3rem; }
@@ -725,6 +728,7 @@
       .bottom-nav-btn { font-size: 0.6rem; letter-spacing: 0.5px; padding: 0.5rem 0.2rem; }
       .bottom-nav-btn i { font-size: 0.7rem; }
       .seal-back-btn { padding: 0.3rem 0.6rem; font-size: 0.55rem; }
+      .event-description { font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -895,7 +899,6 @@
             <div class="venue-sub">Manthar Road, SDK</div>
             <div class="venue-actions">
               <a href="https://maps.google.com/?q=Urooj+Marriage+Hall+Manthar+Road+SDK" target="_blank" class="action-pill-btn btn-emerald"><i class="fas fa-location-arrow"></i> Map</a>
-              <!-- Updated Save Button -->
               <button class="action-pill-btn btn-outline-gold" onclick="openCalendar('Rasm-e-Hina - Saad & Khadija', '20261211T180000', '20261211T220000', 'Urooj Marriage Hall, SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
             </div>
           </div>
@@ -939,7 +942,6 @@
             <div class="venue-sub">Manthar Road, SDK</div>
             <div class="venue-actions">
               <a href="https://maps.google.com/?q=28.2953575,70.1337127" target="_blank" class="action-pill-btn btn-emerald"><i class="fas fa-location-arrow"></i> Map</a>
-              <!-- Updated Save Button -->
               <button class="action-pill-btn btn-outline-gold" onclick="openCalendar('Barat - Saad & Khadija', '20261212T100000', '20261212T140000', 'Ajmal Town SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
             </div>
           </div>
@@ -979,7 +981,6 @@
             <div class="venue-sub">Manthar Road, SDK</div>
             <div class="venue-actions">
               <a href="https://maps.google.com/?q=Siraj+Marquee+Manthar+Road+SDK" target="_blank" class="action-pill-btn btn-emerald"><i class="fas fa-location-arrow"></i> Map</a>
-              <!-- Updated Save Button -->
               <button class="action-pill-btn btn-outline-gold" onclick="openCalendar('Walima - Saad & Khadija', '20261213T190000', '20261213T220000', 'Siraj Marquee SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
             </div>
           </div>
@@ -1071,22 +1072,16 @@
       document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('bottomTab' + num).classList.add('active');
 
-      // Scroll to top when switching event to ensure header is visible
+      // Scroll to top of the card when switching
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ===== OPEN CALENDAR DIRECTLY (Google Calendar Format) =====
+    // ===== OPEN CALENDAR DIRECTLY =====
     function openCalendar(title, start, end, location) {
-      // Format required by Google Calendar: YYYYMMDDTHHMMSSZ (UTC time)
-      // Note: For precise local time, users might need a third-party link generator, 
-      // but this standard Google URL works universally across devices.
-      
       const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent('Wedding Celebration of Saad & Khadija Jamil. For info: 0300 6745696')}&location=${encodeURIComponent(location)}`;
       
       showToast('Opening Calendar...'); 
       burstHearts();
-      
-      // Open in a new tab
       window.open(googleCalUrl, '_blank');
     }
 
@@ -1170,7 +1165,6 @@
 
     window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
 
-    // Soft warm palette for petals
     const heartPalette = ['#E2CDB8', '#D4BFA8', '#CBB192', '#F5EFE8', '#FFFFFF'];
 
     class HeartDrop {
