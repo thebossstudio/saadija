@@ -742,100 +742,223 @@
     }
 
     /* ===== GITHUB PAGES: LARGE PHONE PRESENTATION ===== */
+    /* RESPONSIVE LAYOUT — mobile invitation proportions */
     @media (max-width: 768px) {
       html, body {
         width: 100%;
         min-width: 0;
         margin: 0;
         padding: 0;
-        overflow-x: hidden;
+        overflow-x: clip;
       }
 
-      body { align-items: stretch; }
+      body {
+        align-items: stretch;
+        background: var(--card-bg);
+        background-image: none;
+        padding: 0;
+      }
 
       .palace-suite {
         width: 100%;
         max-width: none;
         margin: 0;
-        padding: 0 0 calc(7.5rem + env(safe-area-inset-bottom, 0px));
+        padding: 0 0 calc(6.2rem + env(safe-area-inset-bottom, 0px));
       }
 
       .mehrab-crown {
-        height: 190px;
-        margin-bottom: -3px;
+        display: block;
+        width: 100%;
+        height: clamp(145px, 31vw, 225px);
+        margin: 0 0 -3px;
       }
 
       .palace-card {
         width: 100%;
-        padding: 2.8rem 1.2rem 4.5rem;
-        border-left-width: 4px;
-        border-right-width: 4px;
+        border-radius: 0;
+        border-left: 3px solid var(--border-gold);
+        border-right: 3px solid var(--border-gold);
+        border-bottom: 3px solid var(--border-gold);
+        padding: clamp(1.8rem, 7vw, 3rem) clamp(1rem, 6.2vw, 2rem) 3.5rem;
+        box-shadow: none;
       }
 
-      .suite-top-bar { margin-bottom: 2rem; gap: .8rem; }
-      .seal-back-btn { font-size: 1rem; padding: .8rem 1.15rem; min-height: 48px; }
-      .suite-bismillah { font-size: 1.9rem; line-height: 1.55; }
-      .suite-together { font-size: 1rem; letter-spacing: 2px; line-height: 1.6; }
-      .suite-couple-banner { margin: 1.2rem auto 2.2rem; padding-bottom: 1.8rem; }
-      .suite-couple-names { font-size: clamp(2.8rem, 9vw, 3.8rem); line-height: 1.22; }
-      .suite-couple-names .script-amp { font-size: 1.15em; }
+      .palace-inner-frame {
+        inset: 0 7px 7px;
+        border-radius: 0;
+      }
 
-      .event-tabs-nav { gap: .45rem; padding: .5rem; margin-bottom: 3rem; }
-      .event-tab-btn { min-height: 82px; padding: 1rem .3rem; gap: 8px; }
-      .event-tab-btn .tab-title { font-size: clamp(1rem, 3.8vw, 1.25rem); letter-spacing: .8px; }
-      .event-tab-btn .tab-date { font-size: clamp(.82rem, 3.2vw, 1rem); }
+      .suite-top-bar {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: clamp(5px, 2vw, 12px);
+        margin: 0 0 clamp(1.5rem, 6vw, 2.5rem);
+        padding-top: 0;
+      }
 
-      .event-ornament { font-size: 1.4rem; margin-bottom: 1rem; }
-      .event-category { font-size: 1rem; letter-spacing: 2px; margin-bottom: .6rem; }
-      .event-main-title { font-size: clamp(3rem, 10vw, 4rem); line-height: 1.2; }
-      .barat-names-highlight { font-size: 1.8rem; }
-      .date-ribbon { font-size: 1.2rem; padding: .8rem 1rem; line-height: 1.5; }
-      .event-tagline { font-size: 1.3rem; line-height: 1.55; }
-      .event-description { font-size: 1.22rem; line-height: 1.8; }
+      .seal-back-btn {
+        min-height: 40px;
+        padding: .55rem clamp(.55rem, 2.5vw, 1rem);
+        gap: 5px;
+        font-size: clamp(.62rem, 2.5vw, .82rem);
+        letter-spacing: .6px;
+      }
 
-      .itinerary-box { padding: 1.9rem 1.25rem; margin-bottom: 2.4rem; }
-      .itinerary-header { font-size: 1.05rem; margin-bottom: 1.5rem; }
-      .timeline-track { gap: 1.55rem; }
-      .timeline-info { font-size: 1.25rem; }
-      .timeline-badge { font-size: 1rem; padding: .55rem 1rem; }
+      .suite-bismillah {
+        min-width: 0;
+        font-size: clamp(1.15rem, 5.2vw, 1.65rem);
+        line-height: 1.65;
+        text-align: center;
+      }
 
-      .venue-arch-card { padding: 2.8rem 1rem 1.8rem; margin-bottom: 2.5rem; }
-      .venue-label { font-size: .95rem; }
-      .venue-title { font-size: 2.2rem; line-height: 1.3; }
-      .venue-sub { font-size: 1.2rem; }
-      .action-pill-btn { min-height: 58px; padding: 1rem 1.5rem; font-size: 1.05rem; }
+      .suite-couple-banner {
+        margin: 0 auto clamp(1.5rem, 6vw, 2.2rem);
+        padding-bottom: clamp(1.2rem, 5vw, 1.8rem);
+      }
 
-      .countdown-section { margin: 2.5rem auto; padding-top: 1.8rem; }
-      .countdown-heading { font-size: 1.05rem; }
-      .countdown-grid { gap: .55rem; }
-      .flip-tile { padding: 1.3rem .2rem; }
-      .flip-num { font-size: 2.6rem; }
-      .flip-label { font-size: .82rem; }
+      .suite-together {
+        font-size: clamp(.68rem, 2.9vw, .9rem);
+        letter-spacing: clamp(1px, .55vw, 2.5px);
+        line-height: 1.5;
+        margin-bottom: .55rem;
+      }
 
-      .blessing-suite { padding: 2rem 1.2rem; margin: 2.2rem auto 1.6rem; }
-      .blessing-title { font-size: 1.15rem; }
-      .blessing-sub { font-size: 1.12rem; }
-      .royal-input { min-height: 58px; padding: 1rem; font-size: 1.15rem; }
-      .blessing-note { font-size: 1.05rem; line-height: 1.55; }
-      .blessing-note strong { font-size: .95rem; }
-      .suite-footer { font-size: 1.2rem; line-height: 1.7; }
-      .suite-footer a { font-size: 1.3rem; }
+      .suite-couple-names {
+        font-size: clamp(2rem, 8.6vw, 3.15rem);
+        line-height: 1.22;
+        overflow-wrap: anywhere;
+      }
 
-      .floating-controls { right: 14px; bottom: 110px; gap: 14px; }
-      .float-btn { width: 62px; height: 62px; font-size: 1.5rem; }
-      .bottom-event-nav { padding: .65rem .8rem calc(.75rem + env(safe-area-inset-bottom, 0px)); }
-      .bottom-event-nav-inner { max-width: 100%; padding: .4rem; gap: .35rem; }
-      .bottom-nav-btn { min-height: 58px; padding: .9rem .3rem; font-size: 1rem; gap: 6px; }
-      .bottom-nav-btn i { font-size: 1.15rem; }
+      .suite-couple-names .script-amp {
+        font-size: .95em;
+        margin: 0 .12em;
+      }
+
+      .event-tabs-nav {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .25rem;
+        padding: .35rem;
+        margin-bottom: clamp(2rem, 7vw, 2.8rem);
+      }
+
+      .event-tab-btn {
+        min-width: 0;
+        min-height: 68px;
+        padding: .65rem .15rem;
+        gap: 4px;
+      }
+
+      .event-tab-btn .tab-title {
+        font-size: clamp(.78rem, 3.5vw, 1rem);
+        letter-spacing: .4px;
+      }
+
+      .event-tab-btn .tab-date {
+        font-size: clamp(.62rem, 2.7vw, .78rem);
+        white-space: nowrap;
+      }
+
+      .event-ornament { font-size: 1rem; margin-bottom: .7rem; }
+      .event-category {
+        font-size: clamp(.72rem, 3vw, .9rem);
+        letter-spacing: clamp(1px, .5vw, 2px);
+      }
+      .event-main-title {
+        font-size: clamp(2.2rem, 9vw, 3.2rem);
+        line-height: 1.15;
+      }
+      .barat-names-highlight { font-size: clamp(1.1rem, 4.7vw, 1.5rem); }
+      .date-ribbon {
+        max-width: 100%;
+        padding: .55rem .7rem;
+        font-size: clamp(.78rem, 3.4vw, 1rem);
+        line-height: 1.45;
+        flex-wrap: wrap;
+      }
+      .event-tagline {
+        font-size: clamp(.9rem, 3.8vw, 1.1rem);
+        line-height: 1.5;
+      }
+      .event-description {
+        font-size: clamp(.9rem, 3.7vw, 1.05rem);
+        line-height: 1.7;
+      }
+
+      .itinerary-box {
+        padding: clamp(1rem, 4vw, 1.5rem);
+        margin-bottom: 1.6rem;
+      }
+      .timeline-track { gap: 1rem; }
+      .timeline-info { font-size: clamp(.88rem, 3.6vw, 1rem); }
+      .timeline-badge { font-size: clamp(.75rem, 3vw, .9rem); padding: .4rem .65rem; }
+
+      .venue-arch-card {
+        padding: 2rem .8rem 1.3rem;
+        margin-bottom: 1.8rem;
+      }
+      .venue-title { font-size: clamp(1.45rem, 6vw, 2rem); line-height: 1.25; }
+      .venue-sub { font-size: clamp(.9rem, 3.7vw, 1.05rem); }
+      .action-pill-btn {
+        min-height: 46px;
+        padding: .7rem 1rem;
+        font-size: clamp(.78rem, 3.2vw, .95rem);
+      }
+
+      .countdown-grid { gap: .35rem; }
+      .flip-tile { padding: .9rem .15rem; }
+      .flip-num { font-size: clamp(1.5rem, 7vw, 2.2rem); }
+      .flip-label { font-size: clamp(.62rem, 2.6vw, .75rem); }
+
+      .blessing-suite { padding: 1.4rem .8rem; margin: 1.7rem auto 1.2rem; }
+      .royal-input { min-height: 48px; padding: .75rem; font-size: 1rem; }
+
+      .floating-controls {
+        right: max(12px, env(safe-area-inset-right, 0px));
+        bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+        gap: 10px;
+      }
+      .float-btn {
+        width: clamp(48px, 13vw, 58px);
+        height: clamp(48px, 13vw, 58px);
+        font-size: 1.2rem;
+      }
+
+      .bottom-event-nav {
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: .45rem .55rem calc(.5rem + env(safe-area-inset-bottom, 0px));
+      }
+      .bottom-event-nav-inner {
+        width: 100%;
+        max-width: 100%;
+        gap: .2rem;
+        padding: .28rem;
+      }
+      .bottom-nav-btn {
+        min-width: 0;
+        min-height: 48px;
+        padding: .6rem .15rem;
+        gap: 4px;
+        font-size: clamp(.68rem, 3vw, .85rem);
+        letter-spacing: .2px;
+      }
+      .bottom-nav-btn i { font-size: .9rem; }
     }
 
     @media (max-width: 380px) {
-      .suite-couple-names { font-size: 2.55rem; }
-      .event-main-title { font-size: 2.7rem; }
-      .event-tab-btn .tab-title { font-size: .9rem; }
-      .event-tab-btn .tab-date { font-size: .75rem; }
-      .palace-card { padding-left: .9rem; padding-right: .9rem; }
-      .flip-num { font-size: 2.2rem; }
+      .suite-top-bar { gap: 4px; }
+      .seal-back-btn { padding: .5rem .45rem; font-size: .6rem; }
+      .suite-couple-names { font-size: clamp(1.8rem, 8.2vw, 2.35rem); }
+      .event-tab-btn .tab-title { font-size: .72rem; }
+      .event-tab-btn .tab-date { font-size: .58rem; }
+      .date-ribbon { letter-spacing: 0; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .palace-suite { max-width: min(720px, calc(100% - 2rem)); }
+      .palace-card { padding-left: clamp(1.5rem, 4vw, 2rem); padding-right: clamp(1.5rem, 4vw, 2rem); }
     }
 
   </style>
