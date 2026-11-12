@@ -20,30 +20,23 @@
     }
 
     :root {
-      /* ---- WARM GOLDEN PALETTE ---- */
       --bg-base: #E5D8C5; 
       --bg-gradient: radial-gradient(circle at 50% 10%, #F8F2E9 0%, #DBC9B4 100%);
-      
       --card-bg: #FEFCF8; 
-      
-      /* Gold accents */
       --border-gold: #D4BFA8;
       --border-gold-dark: #B89B7B;
       --border-rose: #CBB192; 
-      
       --text-main: #4A3B30; 
       --text-muted: #7E6B5A;
       --text-light: #9C8A78;
-
-      /* UI Specific */
       --active-tab-bg: #F2EAE0;
       --toast-bg: #FFFFFF;
       --ease-royal: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    html {
-      height: 100%;
-      overflow: hidden; /* Prevents double scrollbars */
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
     }
 
     body {
@@ -51,16 +44,11 @@
       background-image: var(--bg-gradient);
       font-family: 'Inter', sans-serif;
       font-weight: 400;
-      height: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* Centers content perfectly on PC */
-      padding: 2rem 1rem; /* Provides breathing room */
-      position: relative;
       color: var(--text-main);
-      overflow-y: auto; /* Allows scrolling if content is taller than screen */
-      overflow-x: hidden;
     }
 
     /* Full-Screen Falling Petals Canvas */
@@ -77,11 +65,13 @@
     /* ===== STAGE 1: ENVELOPE ===== */
     .envelope-stage {
       max-width: 600px;
-      width: 100%;
+      width: 90%;
       position: relative;
       z-index: 15;
       perspective: 1400px;
       animation: floatEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 3rem;
+      margin-bottom: 5rem;
     }
 
     @keyframes floatEntrance {
@@ -111,7 +101,6 @@
       pointer-events: none;
     }
 
-    /* Envelope Ornamentation */
     .envelope-border {
       position: absolute;
       inset: 8px;
@@ -120,7 +109,6 @@
       pointer-events: none;
     }
 
-    /* SVG Flap Simulation */
     .envelope-flap-svg {
       position: absolute;
       top: 0;
@@ -131,7 +119,6 @@
       opacity: 0.9;
     }
 
-    /* Header text */
     .env-bismillah {
       font-size: 1.8rem;
       color: var(--border-gold-dark);
@@ -151,7 +138,6 @@
       z-index: 3;
     }
 
-    /* Couple Names */
     .env-names {
       position: relative;
       z-index: 3;
@@ -174,7 +160,6 @@
       margin: 0.2rem 0;
     }
 
-    /* Wax Seal Container */
     .wax-seal-container {
       position: relative;
       z-index: 5;
@@ -185,7 +170,6 @@
       gap: 0.8rem;
     }
 
-    /* The interactable seal button */
     .wax-seal-btn {
       width: 110px;
       height: 110px;
@@ -218,7 +202,6 @@
       transform: scale(0.95);
     }
 
-    /* Monogram Inside Seal */
     .wax-seal-inner {
       width: 80px;
       height: 80px;
@@ -238,7 +221,6 @@
       text-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    /* Pointing Hand Hint */
     .pointing-hand-hint {
       font-size: 2rem;
       color: var(--border-gold-dark);
@@ -252,7 +234,6 @@
       50% { transform: translateY(10px) rotate(-10deg); }
     }
 
-    /* Hint text */
     .wax-tap-hint {
       font-size: 0.7rem;
       font-weight: 700;
@@ -276,11 +257,12 @@
     .palace-suite {
       display: none; 
       max-width: 680px;
-      width: 100%;
+      width: 90%;
       position: relative;
       z-index: 15;
       animation: suiteUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      padding-bottom: 4rem; /* Space for fixed bottom nav */
+      margin-top: 3rem;
+      margin-bottom: 5rem;
     }
 
     @keyframes suiteUnfold {
@@ -288,7 +270,6 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Mehrab Arch Crown */
     .mehrab-crown {
       width: 100%;
       display: block;
@@ -296,7 +277,6 @@
       filter: drop-shadow(0 -4px 8px rgba(0, 0, 0, 0.05));
     }
 
-    /* Main Card Content */
     .palace-card {
       background-color: var(--card-bg);
       background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9) 0%, transparent 60%);
@@ -306,10 +286,9 @@
       box-shadow: 0 30px 60px rgba(120, 90, 70, 0.12), 0 5px 15px rgba(0, 0, 0, 0.02);
       border: 4px solid var(--border-gold);
       border-top: none; 
-      overflow: hidden; /* This stops the floral corners from breaking out and zooming */
+      overflow: hidden;
     }
 
-    /* Decorative Inner Frame */
     .palace-inner-frame {
       position: absolute;
       inset: 10px 16px 16px;
@@ -320,7 +299,6 @@
       z-index: 3;
     }
 
-    /* Corner Floral Accents - Fixed to not break layout */
     .floral-corner {
       position: absolute;
       width: 150px;
@@ -332,14 +310,12 @@
     .floral-bl { bottom: 0; left: 0; }
     .floral-br { bottom: 0; right: 0; transform: scaleX(-1); }
 
-    /* Suite Content Styling */
     .suite-content {
       position: relative;
       z-index: 10;
       text-align: center;
     }
 
-    /* Top utility bar */
     .suite-top-bar {
       display: flex;
       align-items: center;
@@ -372,7 +348,6 @@
       color: var(--border-gold-dark);
     }
 
-    /* Couple names banner */
     .suite-couple-banner {
       margin: 0.5rem auto 1.5rem;
       padding-bottom: 1.2rem;
@@ -635,7 +610,7 @@
     /* Floating Controls */
     .floating-controls {
       position: fixed;
-      bottom: 85px; /* Raised to avoid overlapping bottom nav */
+      bottom: 85px;
       right: 20px;
       z-index: 350;
       display: flex;
@@ -676,8 +651,8 @@
       transform: translateY(100%);
       transition: transform 0.5s var(--ease-royal);
       width: 100%;
-      /* Ensure it stays on top */
       margin: 0;
+      padding-bottom: 1rem;
     }
     .bottom-event-nav.visible { transform: translateY(0); }
 
@@ -724,7 +699,6 @@
 
     /* ===== RESPONSIVE (Mobile Fixes) ===== */
     @media (max-width: 680px) {
-      body { padding: 1rem; justify-content: flex-start; padding-top: 2rem;}
       .royal-envelope { padding: 2.5rem 1.2rem 2rem; border-width: 2px; }
       .env-names h1 { font-size: 2.3rem; }
       .palace-card { padding: 1.2rem 1.2rem 2.8rem; border-width: 3px; }
@@ -746,7 +720,7 @@
       .timeline-info { font-size: 0.85rem; }
       .flip-num { font-size: 1.3rem; }
       .venue-title { font-size: 1.1rem; }
-      .floating-controls { bottom: 80px; right: 10px; }
+      .floating-controls { bottom: 85px; right: 10px; }
       .float-btn { width: 42px; height: 42px; font-size: 1rem; border-width: 1.5px; }
       .bottom-nav-btn { font-size: 0.6rem; letter-spacing: 0.5px; padding: 0.5rem 0.2rem; }
       .bottom-nav-btn i { font-size: 0.7rem; }
@@ -762,7 +736,7 @@
   <!-- Toast Notification -->
   <div class="royal-toast" id="royalToast">
     <i class="fas fa-check-circle" style="color: var(--border-rose);"></i>
-    <span id="toastText">Saved to your calendar</span>
+    <span id="toastText">Opening Calendar...</span>
   </div>
 
   <!-- Floating Controls -->
@@ -839,11 +813,8 @@
           <stop offset="100%" stop-color="#B89B7B"/>
         </linearGradient>
       </defs>
-      <!-- Outer thick base shape -->
       <path d="M0,120 C0,80 80,90 150,60 C220,30 290,20 350,-10 C410,20 480,30 550,60 C620,90 700,80 700,120 Z" fill="#FEFCF8" stroke="url(#strongGoldRim)" stroke-width="4"/>
-      <!-- Inner accent -->
       <path d="M10,120 C10,90 85,100 155,70 C225,40 295,30 350,5 C405,30 475,40 545,70 C615,100 690,90 690,120 Z" fill="#F5EFE8" stroke="#CBB192" stroke-width="2.5"/>
-      <!-- Centerpiece -->
       <circle cx="350" cy="40" r="14" fill="#FFFFFF" stroke="#D4BFA8" stroke-width="3"/>
       <polygon points="350,31 356,40 350,49 344,40" fill="#CBB192"/>
     </svg>
@@ -924,7 +895,8 @@
             <div class="venue-sub">Manthar Road, SDK</div>
             <div class="venue-actions">
               <a href="https://maps.google.com/?q=Urooj+Marriage+Hall+Manthar+Road+SDK" target="_blank" class="action-pill-btn btn-emerald"><i class="fas fa-location-arrow"></i> Map</a>
-              <button class="action-pill-btn btn-outline-gold" onclick="downloadCalendar('Rasm-e-Hina - Saad & Khadija', '20261211T180000', '20261211T220000', 'Urooj Marriage Hall, SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
+              <!-- Updated Save Button -->
+              <button class="action-pill-btn btn-outline-gold" onclick="openCalendar('Rasm-e-Hina - Saad & Khadija', '20261211T180000', '20261211T220000', 'Urooj Marriage Hall, SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
             </div>
           </div>
 
@@ -967,7 +939,8 @@
             <div class="venue-sub">Manthar Road, SDK</div>
             <div class="venue-actions">
               <a href="https://maps.google.com/?q=28.2953575,70.1337127" target="_blank" class="action-pill-btn btn-emerald"><i class="fas fa-location-arrow"></i> Map</a>
-              <button class="action-pill-btn btn-outline-gold" onclick="downloadCalendar('Barat - Saad & Khadija', '20261212T100000', '20261212T140000', 'Ajmal Town SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
+              <!-- Updated Save Button -->
+              <button class="action-pill-btn btn-outline-gold" onclick="openCalendar('Barat - Saad & Khadija', '20261212T100000', '20261212T140000', 'Ajmal Town SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
             </div>
           </div>
 
@@ -1006,7 +979,8 @@
             <div class="venue-sub">Manthar Road, SDK</div>
             <div class="venue-actions">
               <a href="https://maps.google.com/?q=Siraj+Marquee+Manthar+Road+SDK" target="_blank" class="action-pill-btn btn-emerald"><i class="fas fa-location-arrow"></i> Map</a>
-              <button class="action-pill-btn btn-outline-gold" onclick="downloadCalendar('Walima - Saad & Khadija', '20261213T190000', '20261213T220000', 'Siraj Marquee SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
+              <!-- Updated Save Button -->
+              <button class="action-pill-btn btn-outline-gold" onclick="openCalendar('Walima - Saad & Khadija', '20261213T190000', '20261213T220000', 'Siraj Marquee SDK')"><i class="fas fa-calendar-plus"></i> Save</button>
             </div>
           </div>
 
@@ -1096,26 +1070,24 @@
 
       document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('bottomTab' + num).classList.add('active');
+
+      // Scroll to top when switching event to ensure header is visible
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ===== ADD TO CALENDAR (.ics download) =====
-    function downloadCalendar(title, start, end, location) {
-      const icsContent = [
-        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Saad & Khadija Wedding//EN',
-        'BEGIN:VEVENT', `DTSTART:${start}`, `DTEND:${end}`, `SUMMARY:${title}`, `LOCATION:${location}`,
-        'DESCRIPTION:Wedding Celebration of Saad & Khadija Jamil. For info: 0300 6745696',
-        'END:VEVENT', 'END:VCALENDAR'
-      ].join('\r\n');
-
-      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.ics`);
-      document.body.appendChild(link); link.click(); document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
-      showToast('Calendar invite downloaded!'); burstHearts();
+    // ===== OPEN CALENDAR DIRECTLY (Google Calendar Format) =====
+    function openCalendar(title, start, end, location) {
+      // Format required by Google Calendar: YYYYMMDDTHHMMSSZ (UTC time)
+      // Note: For precise local time, users might need a third-party link generator, 
+      // but this standard Google URL works universally across devices.
+      
+      const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent('Wedding Celebration of Saad & Khadija Jamil. For info: 0300 6745696')}&location=${encodeURIComponent(location)}`;
+      
+      showToast('Opening Calendar...'); 
+      burstHearts();
+      
+      // Open in a new tab
+      window.open(googleCalUrl, '_blank');
     }
 
     // ===== GUEST BLESSINGS =====
