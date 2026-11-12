@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Light Palace Wedding · Saad & Khadija</title>
+  <title>Saad & Khadija · Wedding Invitation</title>
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts: Inter and Great Vibes -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -19,23 +19,23 @@
     }
 
     :root {
-      /* Light & Airy Palace Palette */
-      --bg-base: #F7F5F0;
-      --bg-gradient: radial-gradient(circle at 50% 0%, #FFFFFF 0%, #F0EAE1 100%);
+      /* ---- WARM GOLDEN PALETTE FROM IMAGE ---- */
+      --bg-base: #E5D8C5; /* warm beige background */
+      --bg-gradient: radial-gradient(circle at 50% 10%, #F8F2E9 0%, #DBC9B4 100%);
       
-      --card-bg: #FFFFFF;
+      --card-bg: #FEFCF8; /* very light cream card */
       
-      /* Stronger, prominent colors */
-      --border-gold: #C8A97E; 
-      --border-gold-dark: #A68459;
-      --border-rose: #D4A3A8;
+      /* Gold accents */
+      --border-gold: #D4BFA8;
+      --border-gold-dark: #B89B7B;
+      --border-rose: #CBB192; /* muted tan/rose */
       
-      --text-main: #3A302B;
-      --text-muted: #7A6E67;
-      --text-light: #9C9088;
+      --text-main: #4A3B30; /* dark warm brown */
+      --text-muted: #7E6B5A;
+      --text-light: #9C8A78;
 
       /* UI Specific */
-      --active-tab-bg: #F3EDE4;
+      --active-tab-bg: #F2EAE0;
       --toast-bg: #FFFFFF;
       --ease-royal: cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -84,14 +84,13 @@
 
     .royal-envelope {
       width: 100%;
-      background: linear-gradient(160deg, #FFFFFF 0%, #F9F6F0 100%);
+      background: linear-gradient(160deg, #FEFCF8 0%, #F5EFE8 100%);
       border-radius: 20px;
       padding: 3rem 2rem 3rem;
       box-shadow: 
-        0 25px 50px rgba(180, 160, 140, 0.2),
+        0 25px 50px rgba(120, 90, 70, 0.15),
         0 5px 15px rgba(0, 0, 0, 0.03),
         inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-      /* Strong prominent border */
       border: 3px solid var(--border-gold);
       text-align: center;
       overflow: hidden;
@@ -187,9 +186,9 @@
       border: none;
       cursor: pointer;
       position: relative;
-      background: radial-gradient(circle at 35% 30%, #E8B4B7 0%, #D4A3A8 60%, #B27B81 100%);
+      background: radial-gradient(circle at 35% 30%, #E2CDB8 0%, #D4BFA8 60%, #B89B7B 100%);
       box-shadow: 
-        0 12px 28px rgba(178, 123, 129, 0.4),
+        0 12px 28px rgba(160, 130, 100, 0.35),
         inset 0 2px 6px rgba(255, 255, 255, 0.6);
       display: flex;
       align-items: center;
@@ -199,8 +198,8 @@
     }
 
     @keyframes sealPulse {
-      0%, 100% { box-shadow: 0 12px 28px rgba(178, 123, 129, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.4); }
-      50% { box-shadow: 0 18px 38px rgba(178, 123, 129, 0.5), 0 0 0 8px rgba(255, 255, 255, 0.2); }
+      0%, 100% { box-shadow: 0 12px 28px rgba(160, 130, 100, 0.35), 0 0 0 3px rgba(255, 255, 255, 0.4); }
+      50% { box-shadow: 0 18px 38px rgba(160, 130, 100, 0.45), 0 0 0 8px rgba(255, 255, 255, 0.2); }
     }
 
     .wax-seal-btn:hover {
@@ -249,7 +248,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
       transition: all 0.2s ease;
     }
-    .wax-tap-hint:hover { background: #F9F6F0; }
+    .wax-tap-hint:hover { background: #F5EFE8; }
 
     /* Footer note */
     .env-footer-note {
@@ -276,7 +275,7 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Mehrab Arch Crown - Thickened for prominence */
+    /* Mehrab Arch Crown */
     .mehrab-crown {
       width: 100%;
       display: block;
@@ -284,24 +283,23 @@
       filter: drop-shadow(0 -4px 8px rgba(0, 0, 0, 0.05));
     }
 
-    /* Main Card Content - Strong Border */
+    /* Main Card Content */
     .palace-card {
       background-color: var(--card-bg);
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9) 0%, transparent 60%);
       border-radius: 0 0 24px 24px;
       padding: 1.5rem 2.5rem 3.5rem;
       position: relative;
       box-shadow: 
-        0 30px 60px rgba(180, 160, 140, 0.15),
+        0 30px 60px rgba(120, 90, 70, 0.12),
         0 5px 15px rgba(0, 0, 0, 0.02);
-      /* Strong Multi-layered Border */
       border: 4px solid var(--border-gold);
       border-top: none; 
       overflow: hidden;
     }
 
-    /* Decorative Inner Frame - Strong & Stylish */
+    /* Decorative Inner Frame */
     .palace-inner-frame {
       position: absolute;
       inset: 10px 16px 16px;
@@ -341,7 +339,7 @@
     }
 
     .seal-back-btn {
-      background: #F9F6F0;
+      background: #F5EFE8;
       border: 2px solid var(--border-gold);
       color: var(--text-main);
       padding: 0.4rem 1rem;
@@ -368,7 +366,7 @@
     .suite-couple-banner {
       margin: 0.5rem auto 1.5rem;
       padding-bottom: 1.2rem;
-      border-bottom: 2px solid rgba(200, 169, 126, 0.3);
+      border-bottom: 2px solid rgba(212, 191, 168, 0.4);
     }
 
     .suite-together {
@@ -396,12 +394,12 @@
       font-weight: 400;
     }
 
-    /* Event Tab Navigation - Prominent */
+    /* Event Tab Navigation */
     .event-tabs-nav {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0.5rem;
-      background: #F9F6F0;
+      background: #F5EFE8;
       padding: 0.4rem;
       border-radius: 12px;
       border: 2px solid var(--border-gold);
@@ -439,7 +437,7 @@
       background: var(--active-tab-bg);
       color: var(--border-gold-dark);
       border-color: var(--border-gold);
-      box-shadow: 0 3px 10px rgba(200, 169, 126, 0.15);
+      box-shadow: 0 3px 10px rgba(212, 191, 168, 0.2);
     }
     .event-tab-btn.active .tab-date { color: var(--border-rose); }
 
@@ -458,7 +456,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(90deg, transparent, rgba(200, 169, 126, 0.15), transparent);
+      background: linear-gradient(90deg, transparent, rgba(212, 191, 168, 0.2), transparent);
       border-top: 2px solid var(--border-gold);
       border-bottom: 2px solid var(--border-gold);
       padding: 0.5rem 1.5rem;
@@ -472,26 +470,26 @@
     .event-tagline { font-weight: 500; font-style: italic; color: var(--text-muted); margin-bottom: 1.5rem; }
     .event-description { font-weight: 400; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; max-width: 500px; margin: 0 auto 1.5rem; }
 
-    /* Itinerary Timeline - Thicker Line & Stronger Nodes */
+    /* Itinerary Timeline */
     .itinerary-box {
-      background: #F9F6F0;
+      background: #F5EFE8;
       border: 2px solid var(--border-gold);
       border-radius: 12px;
       padding: 1.2rem 1.5rem;
       max-width: 450px;
       margin: 0 auto 1.5rem;
       text-align: left;
-      box-shadow: 0 4px 10px rgba(180, 160, 140, 0.05);
+      box-shadow: 0 4px 10px rgba(120, 90, 70, 0.04);
     }
     .itinerary-header { text-align: center; font-weight: 700; font-size: 0.75rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-main); margin-bottom: 1rem; }
     .timeline-track { position: relative; padding-left: 20px; display: flex; flex-direction: column; gap: 1rem; }
     .timeline-track::before { content:""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 3px; background: var(--border-gold); border-radius: 2px; }
     .timeline-item { position: relative; display: flex; align-items: center; justify-content: space-between; }
-    .timeline-node { position: absolute; left: -19px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; border: 3px solid var(--border-rose); box-shadow: 0 0 0 2px rgba(212, 163, 168, 0.3); }
+    .timeline-node { position: absolute; left: -19px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; border: 3px solid var(--border-rose); box-shadow: 0 0 0 2px rgba(203, 177, 146, 0.3); }
     .timeline-info { font-weight: 600; color: var(--text-main); font-size: 0.9rem; }
-    .timeline-badge { font-weight: 700; font-size: 0.7rem; color: var(--border-rose-dark); background: #FFFFFF; padding: 0.3rem 0.7rem; border-radius: 50px; border: 1.5px solid var(--border-gold); }
+    .timeline-badge { font-weight: 700; font-size: 0.7rem; color: var(--border-gold-dark); background: #FFFFFF; padding: 0.3rem 0.7rem; border-radius: 50px; border: 1.5px solid var(--border-gold); }
 
-    /* Venue Arch Card - Strong Prominent Borders */
+    /* Venue Arch Card */
     .venue-arch-card {
       max-width: 450px;
       margin: 0 auto 1.5rem;
@@ -500,7 +498,7 @@
       border-radius: 120px 120px 12px 12px;
       padding: 2rem 1.5rem 1.5rem;
       position: relative;
-      box-shadow: 0 8px 25px rgba(180, 160, 140, 0.1);
+      box-shadow: 0 8px 25px rgba(120, 90, 70, 0.08);
     }
     .venue-arch-card::before { content: ""; position: absolute; inset: 6px; border: 2px dashed var(--border-rose); border-radius: 114px 114px 10px 10px; pointer-events: none; }
     .venue-label { font-weight: 700; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--border-rose); margin-bottom: 0.3rem; }
@@ -523,13 +521,13 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .btn-emerald { background: var(--border-rose); color: #FFFFFF; border: 2px solid var(--border-rose-dark); box-shadow: 0 4px 10px rgba(212, 163, 168, 0.3); }
-    .btn-emerald:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(212, 163, 168, 0.4); }
+    .btn-emerald { background: var(--border-rose); color: #FFFFFF; border: 2px solid var(--border-gold-dark); box-shadow: 0 4px 10px rgba(184, 155, 123, 0.3); }
+    .btn-emerald:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(184, 155, 123, 0.4); }
     .btn-outline-gold { background: #FFFFFF; color: var(--text-main); border: 2px solid var(--border-gold); }
-    .btn-outline-gold:hover { background: #F9F6F0; transform: translateY(-2px); }
+    .btn-outline-gold:hover { background: #F5EFE8; transform: translateY(-2px); }
 
-    /* Split-Flap Countdown - Bolder Tiles */
-    .countdown-section { margin: 1.5rem auto 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(200, 169, 126, 0.3); max-width: 450px; }
+    /* Countdown */
+    .countdown-section { margin: 1.5rem auto 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(212, 191, 168, 0.4); max-width: 450px; }
     .countdown-heading { font-weight: 700; font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-main); margin-bottom: 1rem; }
     .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
     .flip-tile {
@@ -537,18 +535,18 @@
       border: 2px solid var(--border-gold);
       border-radius: 8px;
       padding: 0.8rem 0.2rem;
-      box-shadow: 0 4px 10px rgba(180, 160, 140, 0.1);
+      box-shadow: 0 4px 10px rgba(120, 90, 70, 0.08);
       position: relative;
     }
-    .flip-tile::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(200, 169, 126, 0.2); }
+    .flip-tile::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(212, 191, 168, 0.3); }
     .flip-num { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.8rem; color: var(--text-main); line-height: 1; display: block; }
     .flip-label { font-weight: 600; font-size: 0.55rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-light); margin-top: 0.3rem; display: block; }
 
-    /* GUEST BLESSINGS (RSVP/Dua Form) */
+    /* GUEST BLESSINGS */
     .blessing-suite {
       max-width: 450px;
       margin: 1.5rem auto 1rem;
-      background: #F9F6F0;
+      background: #F5EFE8;
       border: 2px solid var(--border-gold);
       border-radius: 12px;
       padding: 1.2rem 1.5rem;
@@ -589,9 +587,9 @@
       font-size: 0.85rem;
       color: var(--text-main);
       box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-      border-top: 1px solid rgba(200, 169, 126, 0.1);
-      border-right: 1px solid rgba(200, 169, 126, 0.1);
-      border-bottom: 1px solid rgba(200, 169, 126, 0.1);
+      border-top: 1px solid rgba(212, 191, 168, 0.2);
+      border-right: 1px solid rgba(212, 191, 168, 0.2);
+      border-bottom: 1px solid rgba(212, 191, 168, 0.2);
     }
     .blessing-note strong { font-weight: 700; color: var(--text-main); display: block; font-size: 0.7rem; margin-bottom: 2px; }
 
@@ -613,7 +611,7 @@
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
-      box-shadow: 0 10px 25px rgba(180, 160, 140, 0.2);
+      box-shadow: 0 10px 25px rgba(120, 90, 70, 0.15);
       z-index: 400;
       display: flex;
       align-items: center;
@@ -647,13 +645,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 5px 15px rgba(180, 160, 140, 0.2);
+      box-shadow: 0 5px 15px rgba(120, 90, 70, 0.15);
       transition: all 0.2s ease;
     }
-    .float-btn:hover { transform: scale(1.1); color: var(--border-rose-dark); background: #F9F6F0; }
-    .float-btn.muted { opacity: 0.6; color: var(--text-light); border-color: #E8DFD1; }
+    .float-btn:hover { transform: scale(1.1); color: var(--border-gold-dark); background: #F5EFE8; }
+    .float-btn.muted { opacity: 0.6; color: var(--text-light); border-color: #E5D8C5; }
 
-    /* Fixed Bottom Event Navigation - Stronger Border */
+    /* Fixed Bottom Event Navigation */
     .bottom-event-nav {
       position: fixed;
       bottom: 0;
@@ -663,8 +661,8 @@
       display: flex;
       justify-content: center;
       padding: 0.6rem 1rem calc(0.6rem + env(safe-area-inset-bottom, 0px));
-      background: linear-gradient(180deg, rgba(247, 245, 240, 0) 0%, rgba(247, 245, 240, 0.95) 30%, #F7F5F0 100%);
-      border-top: 1px solid rgba(200, 169, 126, 0.2);
+      background: linear-gradient(180deg, rgba(229, 216, 197, 0) 0%, rgba(229, 216, 197, 0.95) 30%, #E5D8C5 100%);
+      border-top: 1px solid rgba(212, 191, 168, 0.3);
       transform: translateY(100%);
       transition: transform 0.5s var(--ease-royal);
     }
@@ -677,7 +675,7 @@
       border: 2px solid var(--border-gold);
       border-radius: 50px;
       padding: 0.3rem;
-      box-shadow: 0 10px 30px rgba(180, 160, 140, 0.15);
+      box-shadow: 0 10px 30px rgba(120, 90, 70, 0.1);
       max-width: 500px;
       width: 100%;
     }
@@ -701,7 +699,7 @@
       transition: all 0.2s ease;
     }
     .bottom-nav-btn i { font-size: 0.8rem; color: var(--text-light); }
-    .bottom-nav-btn:hover { background: #F9F6F0; color: var(--text-main); }
+    .bottom-nav-btn:hover { background: #F5EFE8; color: var(--text-main); }
 
     .bottom-nav-btn.active {
       background: var(--active-tab-bg);
@@ -780,8 +778,8 @@
       
       <!-- Decorative Flap -->
       <svg class="envelope-flap-svg" viewBox="0 0 500 150" preserveAspectRatio="none">
-        <path d="M0,0 L250,140 L500,0" fill="none" stroke="#C8A97E" stroke-width="2" opacity="0.5"/>
-        <path d="M0,5 L250,145 L500,5" fill="none" stroke="#D4A3A8" stroke-width="1" opacity="0.4" stroke-dasharray="4 4"/>
+        <path d="M0,0 L250,140 L500,0" fill="none" stroke="#D4BFA8" stroke-width="2" opacity="0.5"/>
+        <path d="M0,5 L250,145 L500,5" fill="none" stroke="#CBB192" stroke-width="1" opacity="0.4" stroke-dasharray="4 4"/>
       </svg>
       
       <div class="env-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
@@ -813,22 +811,22 @@
   <!-- ===== STAGE 2: PALACE SUITE (MAIN CARD) ===== -->
   <div class="palace-suite" id="palaceSuite">
     
-    <!-- Thickened Mehrab Arch Crown -->
+    <!-- Mehrab Arch Crown -->
     <svg class="mehrab-crown" viewBox="0 0 700 120" preserveAspectRatio="none">
       <defs>
         <linearGradient id="strongGoldRim" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#A68459"/>
-          <stop offset="50%" stop-color="#C8A97E"/>
-          <stop offset="100%" stop-color="#A68459"/>
+          <stop offset="0%" stop-color="#B89B7B"/>
+          <stop offset="50%" stop-color="#D4BFA8"/>
+          <stop offset="100%" stop-color="#B89B7B"/>
         </linearGradient>
       </defs>
       <!-- Outer thick base shape -->
-      <path d="M0,120 C0,80 80,90 150,60 C220,30 290,20 350,-10 C410,20 480,30 550,60 C620,90 700,80 700,120 Z" fill="#FFFFFF" stroke="url(#strongGoldRim)" stroke-width="4"/>
+      <path d="M0,120 C0,80 80,90 150,60 C220,30 290,20 350,-10 C410,20 480,30 550,60 C620,90 700,80 700,120 Z" fill="#FEFCF8" stroke="url(#strongGoldRim)" stroke-width="4"/>
       <!-- Inner accent -->
-      <path d="M10,120 C10,90 85,100 155,70 C225,40 295,30 350,5 C405,30 475,40 545,70 C615,100 690,90 690,120 Z" fill="#F9F6F0" stroke="#D4A3A8" stroke-width="2.5"/>
+      <path d="M10,120 C10,90 85,100 155,70 C225,40 295,30 350,5 C405,30 475,40 545,70 C615,100 690,90 690,120 Z" fill="#F5EFE8" stroke="#CBB192" stroke-width="2.5"/>
       <!-- Centerpiece -->
-      <circle cx="350" cy="40" r="14" fill="#FFFFFF" stroke="#C8A97E" stroke-width="3"/>
-      <polygon points="350,31 356,40 350,49 344,40" fill="#D4A3A8"/>
+      <circle cx="350" cy="40" r="14" fill="#FFFFFF" stroke="#D4BFA8" stroke-width="3"/>
+      <polygon points="350,31 356,40 350,49 344,40" fill="#CBB192"/>
     </svg>
 
     <div class="palace-card">
@@ -836,14 +834,14 @@
       
       <!-- Floral Corners -->
       <svg class="floral-corner floral-bl" viewBox="0 0 200 200">
-        <path d="M15,185 Q40,110 100,70 Q140,40 190,20" fill="none" stroke="#C8A97E" stroke-width="2" opacity="0.6"/>
-        <circle cx="45" cy="140" r="15" fill="#D4A3A8" opacity="0.7"/>
-        <circle cx="80" cy="95" r="10" fill="#D4A3A8" opacity="0.7"/>
+        <path d="M15,185 Q40,110 100,70 Q140,40 190,20" fill="none" stroke="#D4BFA8" stroke-width="2" opacity="0.6"/>
+        <circle cx="45" cy="140" r="15" fill="#CBB192" opacity="0.7"/>
+        <circle cx="80" cy="95" r="10" fill="#CBB192" opacity="0.7"/>
       </svg>
       <svg class="floral-corner floral-br" viewBox="0 0 200 200">
-        <path d="M15,185 Q40,110 100,70 Q140,40 190,20" fill="none" stroke="#C8A97E" stroke-width="2" opacity="0.6"/>
-        <circle cx="45" cy="140" r="15" fill="#D4A3A8" opacity="0.7"/>
-        <circle cx="80" cy="95" r="10" fill="#D4A3A8" opacity="0.7"/>
+        <path d="M15,185 Q40,110 100,70 Q140,40 190,20" fill="none" stroke="#D4BFA8" stroke-width="2" opacity="0.6"/>
+        <circle cx="45" cy="140" r="15" fill="#CBB192" opacity="0.7"/>
+        <circle cx="80" cy="95" r="10" fill="#CBB192" opacity="0.7"/>
       </svg>
 
       <div class="suite-content">
@@ -1069,7 +1067,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ===== EVENT TAB SWITCHING (Desktop + Bottom Nav sync) =====
+    // ===== EVENT TAB SWITCHING =====
     function switchEvent(num) {
       document.querySelectorAll('.event-panel').forEach(p => p.classList.remove('active'));
       document.getElementById('panel' + num).classList.add('active');
@@ -1101,7 +1099,7 @@
       showToast('Calendar invite downloaded!'); burstHearts();
     }
 
-    // ===== GUEST BLESSINGS (RSVP/dua) =====
+    // ===== GUEST BLESSINGS =====
     function addBlessing(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value.trim();
@@ -1173,7 +1171,7 @@
       });
     }
 
-    // ===== FALLING PETALS (CANVAS) =====
+    // ===== FALLING PETALS =====
     const canvas = document.getElementById('heartsCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -1181,8 +1179,8 @@
 
     window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
 
-    // Soft, light palette for petals
-    const heartPalette = ['#E8B4B7', '#F2D6D1', '#C8A97E', '#F9F6F0', '#FFFFFF'];
+    // Soft warm palette for petals
+    const heartPalette = ['#E2CDB8', '#D4BFA8', '#CBB192', '#F5EFE8', '#FFFFFF'];
 
     class HeartDrop {
       constructor(isBurst = false) { this.reset(isBurst); }
@@ -1204,7 +1202,7 @@
         if (this.y > height + 20) { if (this.isBurst) { this.dead = true; } else { this.reset(false); this.y = -20; } }
       }
       draw() {
-        ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rot); ctx.globalAlpha = this.opacity; ctx.fillStyle = this.color; ctx.shadowBlur = 4; ctx.shadowColor = "rgba(180, 160, 140, 0.3)";
+        ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rot); ctx.globalAlpha = this.opacity; ctx.fillStyle = this.color; ctx.shadowBlur = 4; ctx.shadowColor = "rgba(120, 90, 70, 0.2)";
         const s = this.size; ctx.beginPath(); ctx.moveTo(0, s*0.3); ctx.bezierCurveTo(-s*0.5,-s*0.3, -s,s*0.2, 0,s); ctx.bezierCurveTo(s,s*0.2, s*0.5,-s*0.3, 0,s*0.3); ctx.fill(); ctx.restore();
       }
     }
