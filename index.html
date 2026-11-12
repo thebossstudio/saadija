@@ -1389,12 +1389,29 @@
       window.visualViewport.addEventListener('scroll', syncBottomNavViewport);
     }
 
+    // Lightweight heart animation: capped particles, low-resolution canvas, 30 FPS.
     const canvas = document.getElementById('heartsCanvas');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let lastFrame = 0;
+    const frameInterval = 1000 / 30;
+    const MAX_HEARTS = 22;
+    const BACKGROUND_HEARTS = 12;
+    const BURST_HEARTS = 8;
+    let lastBurstAt = 0;
 
-    window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
+    function resizeHeartCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      // Avoid expensive high-DPI drawing on phones.
+      const dpr = Math.min(window.devicePixelRatio || 1, 1);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', resizeHeartCanvas, { passive: true });
+    resizeHeartCanvas();
 
     const heartPalette = ['#E2CDB8', '#D4BFA8', '#CBB192', '#F5EFE8', '#FFFFFF'];
 
@@ -1402,39 +1419,75 @@
       constructor(isBurst = false) { this.reset(isBurst); }
       reset(isBurst = false) {
         this.x = Math.random() * width;
-        this.y = isBurst ? (Math.random() * height * 0.4 - 50) : (-20 - Math.random() * height);
-        this.size = Math.random() * 10 + 5;
-        this.speedY = isBurst ? (Math.random() * 2 + 1) : (Math.random() * 1.2 + 0.5);
-        this.swayAmp = Math.random() * 1.2 + 0.3; this.swayFreq = Math.random() * 0.02 + 0.01;
-        this.phase = Math.random() * Math.PI * 2; this.rotSpeed = (Math.random() - 0.5) * 0.02;
+        this.y = isBurst ? (Math.random() * Math.min(height * 0.35, 240) - 30) : (-20 - Math.random() * height);
+        this.size = Math.random() * 6 + 4;
+        this.speedY = isBurst ? (Math.random() * 1.4 + 0.8) : (Math.random() * 0.7 + 0.35);
+        this.swayAmp = Math.random() * 0.7 + 0.15;
+        this.swayFreq = Math.random() * 0.015 + 0.008;
+        this.phase = Math.random() * Math.PI * 2;
+        this.rotSpeed = (Math.random() - 0.5) * 0.012;
         this.rot = Math.random() * Math.PI * 2;
-        this.opacity = Math.random() * 0.6 + 0.4; 
+        this.opacity = Math.random() * 0.35 + 0.25;
         this.color = heartPalette[Math.floor(Math.random() * heartPalette.length)];
-        this.isBurst = isBurst; this.dead = false;
+        this.isBurst = isBurst;
+        this.dead = false;
       }
       update() {
-        this.phase += this.swayFreq; this.y += this.speedY; this.x += Math.sin(this.phase) * this.swayAmp;
+        this.phase += this.swayFreq;
+        this.y += this.speedY;
+        this.x += Math.sin(this.phase) * this.swayAmp;
         this.rot += this.rotSpeed;
-        if (this.y > height + 20) { if (this.isBurst) { this.dead = true; } else { this.reset(false); this.y = -20; } }
+        if (this.y > height + 16) {
+          if (this.isBurst) this.dead = true;
+          else { this.reset(false); this.y = -16; }
+        }
       }
       draw() {
-        ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rot); ctx.globalAlpha = this.opacity; ctx.fillStyle = this.color; ctx.shadowBlur = 4; ctx.shadowColor = "rgba(120, 90, 70, 0.2)";
-        const s = this.size; ctx.beginPath(); ctx.moveTo(0, s*0.3); ctx.bezierCurveTo(-s*0.5,-s*0.3, -s,s*0.2, 0,s); ctx.bezierCurveTo(s,s*0.2, s*0.5,-s*0.3, 0,s*0.3); ctx.fill(); ctx.restore();
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rot);
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = this.color;
+        const s = this.size;
+        ctx.beginPath();
+        ctx.moveTo(0, s * 0.3);
+        ctx.bezierCurveTo(-s * 0.5, -s * 0.3, -s, s * 0.2, 0, s);
+        ctx.bezierCurveTo(s, s * 0.2, s * 0.5, -s * 0.3, 0, s * 0.3);
+        ctx.fill();
+        ctx.restore();
       }
     }
 
     const hearts = [];
-    for(let i=0; i<40; i++) hearts.push(new HeartDrop(false));
-    function burstHearts() { for(let i=0; i<40; i++) hearts.push(new HeartDrop(true)); }
-    function animateHearts() {
-      ctx.clearRect(0, 0, width, height);
-      for(let i = hearts.length - 1; i >= 0; i--){
-        hearts[i].update(); hearts[i].draw(); if(hearts[i].dead) hearts.splice(i, 1);
-      }
-      requestAnimationFrame(animateHearts);
+    for (let i = 0; i < BACKGROUND_HEARTS; i++) hearts.push(new HeartDrop(false));
+
+    function burstHearts() {
+      const now = performance.now();
+      if (now - lastBurstAt < 450) return;
+      lastBurstAt = now;
+      // Never allow repeated taps to create an unlimited particle backlog.
+      const room = Math.max(0, MAX_HEARTS - hearts.length);
+      const count = Math.min(BURST_HEARTS, room);
+      for (let i = 0; i < count; i++) hearts.push(new HeartDrop(true));
     }
 
-    window.onload = function() { updateCountdowns(); setInterval(updateCountdowns, 1000); animateHearts(); };
+    function animateHearts(timestamp) {
+      requestAnimationFrame(animateHearts);
+      if (document.hidden || timestamp - lastFrame < frameInterval) return;
+      lastFrame = timestamp;
+      ctx.clearRect(0, 0, width, height);
+      for (let i = hearts.length - 1; i >= 0; i--) {
+        hearts[i].update();
+        hearts[i].draw();
+        if (hearts[i].dead) hearts.splice(i, 1);
+      }
+    }
+
+    window.onload = function() {
+      updateCountdowns();
+      setInterval(updateCountdowns, 1000);
+      requestAnimationFrame(animateHearts);
+    };
   </script>
 </body>
 </html>
