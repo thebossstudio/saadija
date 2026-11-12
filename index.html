@@ -689,71 +689,44 @@
        MOBILE SPECIFIC OVERRIDES (The Zoom Fix)
        ======================================================== */
     @media (max-width: 680px) {
-      /* 1. Hide background on mobile for clean full-screen card look */
       #heartsCanvas { display: none !important; }
-      body { 
-        background: var(--card-bg); 
-        padding: 0; /* Removes gaps around the card */
-      }
-
-      /* 2. Make the card fill the mobile screen */
-      .envelope-stage, .palace-suite {
-        max-width: 100%; 
-        width: 100%;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-      }
-      .royal-envelope, .palace-card {
-        border-radius: 0; /* Square edges on mobile */
-        border-left: none;
-        border-right: none;
-        padding-left: 1rem; /* Tighter padding for more text room */
-        padding-right: 1rem;
-      }
+      body { background: var(--card-bg); padding: 0; }
+      .envelope-stage, .palace-suite { max-width: 100%; width: 100%; padding-left: 0.5rem; padding-right: 0.5rem; }
+      .royal-envelope, .palace-card { border-radius: 0; border-left: none; border-right: none; padding-left: 1rem; padding-right: 1rem; }
       .palace-card { border-bottom: none; padding-bottom: 6rem; }
       
-      /* 3. INCREASE FONT SIZES to fix the "zoomed out" look */
+      /* Increased font sizes for mobile */
       .env-names h1 { font-size: 3rem; }
       .env-names .amp { font-size: 2.8rem; }
-      
       .suite-couple-names { font-size: 2.1rem; line-height: 1.2; }
       .suite-couple-names .script-amp { font-size: 2.2rem; }
-      
       .event-main-title { font-size: 2.8rem; }
       .event-description { font-size: 1rem; }
       .event-tagline { font-size: 1.05rem; }
-      
       .timeline-info { font-size: 1rem; }
       .timeline-badge { font-size: 0.8rem; }
-      
       .venue-title { font-size: 1.6rem; }
       .venue-sub { font-size: 1rem; }
-      
       .flip-num { font-size: 1.8rem; }
       .flip-label { font-size: 0.6rem; }
-      
       .blessing-title { font-size: 0.9rem; }
       .blessing-sub { font-size: 0.95rem; }
       .royal-input { font-size: 1rem; padding: 0.8rem; }
       .action-pill-btn { font-size: 0.75rem; padding: 0.8rem 1.5rem; }
 
-      /* 4. Fix padding for inner frame and gap */
       .palace-inner-frame { inset: 8px 8px 0 8px; border-bottom: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Falling Petals Canvas -->
   <canvas id="heartsCanvas"></canvas>
 
-  <!-- Toast Notification -->
   <div class="royal-toast" id="royalToast">
     <i class="fas fa-check-circle" style="color: var(--border-rose);"></i>
     <span id="toastText">Opening Calendar...</span>
   </div>
 
-  <!-- Floating Controls -->
   <div class="floating-controls">
     <button class="float-btn heart-burst" onclick="burstHearts()" title="Bless Saad & Khadija">
       <i class="fas fa-heart"></i>
@@ -763,7 +736,6 @@
     </button>
   </div>
 
-  <!-- FIXED BOTTOM EVENT NAVIGATION -->
   <div class="bottom-event-nav" id="bottomEventNav">
     <div class="bottom-event-nav-inner">
       <button class="bottom-nav-btn active" id="bottomTab1" onclick="switchEvent(1)">
@@ -778,12 +750,10 @@
     </div>
   </div>
 
-  <!-- ===== STAGE 1: ENVELOPE ===== -->
   <div class="envelope-stage" id="envelopeStage">
     <div class="royal-envelope" id="royalEnvelope">
       <div class="envelope-border"></div>
       
-      <!-- Decorative Flap -->
       <svg class="envelope-flap-svg" viewBox="0 0 500 150" preserveAspectRatio="none">
         <path d="M0,0 L250,140 L500,0" fill="none" stroke="#D4BFA8" stroke-width="2" opacity="0.5"/>
         <path d="M0,5 L250,145 L500,5" fill="none" stroke="#CBB192" stroke-width="1" opacity="0.4" stroke-dasharray="4 4"/>
@@ -805,7 +775,6 @@
           </div>
         </button>
         
-        <!-- Pointing Hand Animation -->
         <i class="fas fa-hand-pointer pointing-hand-hint"></i>
         
         <button class="wax-tap-hint" onclick="unsealInvitation()">
@@ -815,10 +784,8 @@
     </div>
   </div>
 
-  <!-- ===== STAGE 2: PALACE SUITE (MAIN CARD) ===== -->
   <div class="palace-suite" id="palaceSuite">
     
-    <!-- Mehrab Arch Crown -->
     <svg class="mehrab-crown" viewBox="0 0 700 120" preserveAspectRatio="none">
       <defs>
         <linearGradient id="strongGoldRim" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -836,7 +803,6 @@
     <div class="palace-card">
       <div class="palace-inner-frame"></div>
       
-      <!-- Floral Corners -->
       <svg class="floral-corner floral-bl" viewBox="0 0 200 200">
         <path d="M15,185 Q40,110 100,70 Q140,40 190,20" fill="none" stroke="#D4BFA8" stroke-width="2" opacity="0.6"/>
         <circle cx="45" cy="140" r="15" fill="#CBB192" opacity="0.7"/>
@@ -866,7 +832,6 @@
           </div>
         </div>
 
-        <!-- Event Tabs Nav -->
         <div class="event-tabs-nav" id="eventTabsNav">
           <button class="event-tab-btn active" id="tab1" onclick="switchEvent(1)">
             <span class="tab-title">Hina</span>
@@ -882,8 +847,6 @@
           </button>
         </div>
 
-        <!-- EVENT PANELS -->
-        <!-- PANEL 1: RASM-E-HINA -->
         <div class="event-panel active" id="panel1">
           <div class="event-ornament">◆ ❖ ◆</div>
           <div class="event-category">Celebration · Day I</div>
@@ -924,7 +887,6 @@
           </div>
         </div>
 
-        <!-- PANEL 2: BARAT -->
         <div class="event-panel" id="panel2">
           <div class="event-ornament">◆ ❖ ◆</div>
           <div class="event-category">Celebration · Day II</div>
@@ -967,7 +929,6 @@
           </div>
         </div>
 
-        <!-- PANEL 3: WALIMA -->
         <div class="event-panel" id="panel3">
           <div class="event-ornament">◆ ❖ ◆</div>
           <div class="event-category">Celebration · Day III</div>
@@ -1006,7 +967,6 @@
           </div>
         </div>
 
-        <!-- Dua/RSVP Form -->
         <div class="blessing-suite">
           <div class="blessing-title"><i class="fas fa-heart" style="color: var(--border-rose);"></i> Leave a Dua</div>
           <div class="blessing-sub">Or let us know if you can join us</div>
@@ -1033,13 +993,11 @@
     </div>
   </div>
 
-  <!-- Background Piano Audio -->
   <audio id="bgMusic" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_5f8e8b8b6f.mp3?filename=romantic-piano-114324.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // ===== UNSEALING INVITATION =====
     function unsealInvitation() {
       const envelope = document.getElementById('royalEnvelope');
       const stage = document.getElementById('envelopeStage');
@@ -1071,17 +1029,13 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ===== EVENT TAB SWITCHING =====
     function switchEvent(num) {
-      // Switch panels
       document.querySelectorAll('.event-panel').forEach(p => p.classList.remove('active'));
       document.getElementById('panel' + num).classList.add('active');
 
-      // Switch top tabs
       document.querySelectorAll('.event-tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('tab' + num).classList.add('active');
 
-      // Switch bottom tabs
       document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('bottomTab' + num).classList.add('active');
 
@@ -1092,7 +1046,6 @@
       }
     }
 
-    // ===== OPEN CALENDAR DIRECTLY =====
     function openCalendar(title, start, end, location) {
       const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent('Wedding Celebration of Saad & Khadija Jamil. For info: 0300 6745696')}&location=${encodeURIComponent(location)}`;
       
@@ -1101,7 +1054,6 @@
       window.open(googleCalUrl, '_blank');
     }
 
-    // ===== GUEST BLESSINGS =====
     function addBlessing(e) {
       e.preventDefault();
       const name = document.getElementById('guestName').value.trim();
@@ -1124,7 +1076,6 @@
       showToast('Thank you for your dua!'); burstHearts();
     }
 
-    // ===== UI (TOAST & MUSIC) =====
     function showToast(msg) {
       const toast = document.getElementById('royalToast');
       document.getElementById('toastText').textContent = msg;
@@ -1149,7 +1100,6 @@
     }
     document.addEventListener('click', function initAudio() { tryStartMusic(); document.removeEventListener('click', initAudio); });
 
-    // ===== LIVE COUNTDOWNS =====
     function updateCountdowns() {
       const now = new Date().getTime();
       document.querySelectorAll('.countdown-grid').forEach(grid => {
@@ -1173,7 +1123,6 @@
       });
     }
 
-    // ===== FALLING PETALS =====
     const canvas = document.getElementById('heartsCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
