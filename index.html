@@ -740,6 +740,104 @@
         border-radius: 0;
       }
     }
+
+    /* ===== GITHUB PAGES: LARGE PHONE PRESENTATION ===== */
+    @media (max-width: 768px) {
+      html, body {
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      body { align-items: stretch; }
+
+      .palace-suite {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0 0 calc(7.5rem + env(safe-area-inset-bottom, 0px));
+      }
+
+      .mehrab-crown {
+        height: 190px;
+        margin-bottom: -3px;
+      }
+
+      .palace-card {
+        width: 100%;
+        padding: 2.8rem 1.2rem 4.5rem;
+        border-left-width: 4px;
+        border-right-width: 4px;
+      }
+
+      .suite-top-bar { margin-bottom: 2rem; gap: .8rem; }
+      .seal-back-btn { font-size: 1rem; padding: .8rem 1.15rem; min-height: 48px; }
+      .suite-bismillah { font-size: 1.9rem; line-height: 1.55; }
+      .suite-together { font-size: 1rem; letter-spacing: 2px; line-height: 1.6; }
+      .suite-couple-banner { margin: 1.2rem auto 2.2rem; padding-bottom: 1.8rem; }
+      .suite-couple-names { font-size: clamp(2.8rem, 9vw, 3.8rem); line-height: 1.22; }
+      .suite-couple-names .script-amp { font-size: 1.15em; }
+
+      .event-tabs-nav { gap: .45rem; padding: .5rem; margin-bottom: 3rem; }
+      .event-tab-btn { min-height: 82px; padding: 1rem .3rem; gap: 8px; }
+      .event-tab-btn .tab-title { font-size: clamp(1rem, 3.8vw, 1.25rem); letter-spacing: .8px; }
+      .event-tab-btn .tab-date { font-size: clamp(.82rem, 3.2vw, 1rem); }
+
+      .event-ornament { font-size: 1.4rem; margin-bottom: 1rem; }
+      .event-category { font-size: 1rem; letter-spacing: 2px; margin-bottom: .6rem; }
+      .event-main-title { font-size: clamp(3rem, 10vw, 4rem); line-height: 1.2; }
+      .barat-names-highlight { font-size: 1.8rem; }
+      .date-ribbon { font-size: 1.2rem; padding: .8rem 1rem; line-height: 1.5; }
+      .event-tagline { font-size: 1.3rem; line-height: 1.55; }
+      .event-description { font-size: 1.22rem; line-height: 1.8; }
+
+      .itinerary-box { padding: 1.9rem 1.25rem; margin-bottom: 2.4rem; }
+      .itinerary-header { font-size: 1.05rem; margin-bottom: 1.5rem; }
+      .timeline-track { gap: 1.55rem; }
+      .timeline-info { font-size: 1.25rem; }
+      .timeline-badge { font-size: 1rem; padding: .55rem 1rem; }
+
+      .venue-arch-card { padding: 2.8rem 1rem 1.8rem; margin-bottom: 2.5rem; }
+      .venue-label { font-size: .95rem; }
+      .venue-title { font-size: 2.2rem; line-height: 1.3; }
+      .venue-sub { font-size: 1.2rem; }
+      .action-pill-btn { min-height: 58px; padding: 1rem 1.5rem; font-size: 1.05rem; }
+
+      .countdown-section { margin: 2.5rem auto; padding-top: 1.8rem; }
+      .countdown-heading { font-size: 1.05rem; }
+      .countdown-grid { gap: .55rem; }
+      .flip-tile { padding: 1.3rem .2rem; }
+      .flip-num { font-size: 2.6rem; }
+      .flip-label { font-size: .82rem; }
+
+      .blessing-suite { padding: 2rem 1.2rem; margin: 2.2rem auto 1.6rem; }
+      .blessing-title { font-size: 1.15rem; }
+      .blessing-sub { font-size: 1.12rem; }
+      .royal-input { min-height: 58px; padding: 1rem; font-size: 1.15rem; }
+      .blessing-note { font-size: 1.05rem; line-height: 1.55; }
+      .blessing-note strong { font-size: .95rem; }
+      .suite-footer { font-size: 1.2rem; line-height: 1.7; }
+      .suite-footer a { font-size: 1.3rem; }
+
+      .floating-controls { right: 14px; bottom: 110px; gap: 14px; }
+      .float-btn { width: 62px; height: 62px; font-size: 1.5rem; }
+      .bottom-event-nav { padding: .65rem .8rem calc(.75rem + env(safe-area-inset-bottom, 0px)); }
+      .bottom-event-nav-inner { max-width: 100%; padding: .4rem; gap: .35rem; }
+      .bottom-nav-btn { min-height: 58px; padding: .9rem .3rem; font-size: 1rem; gap: 6px; }
+      .bottom-nav-btn i { font-size: 1.15rem; }
+    }
+
+    @media (max-width: 380px) {
+      .suite-couple-names { font-size: 2.55rem; }
+      .event-main-title { font-size: 2.7rem; }
+      .event-tab-btn .tab-title { font-size: .9rem; }
+      .event-tab-btn .tab-date { font-size: .75rem; }
+      .palace-card { padding-left: .9rem; padding-right: .9rem; }
+      .flip-num { font-size: 2.2rem; }
+    }
+
   </style>
 </head>
 <body>
