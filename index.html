@@ -49,7 +49,7 @@
       flex-direction: column;
       align-items: center;
       color: var(--text-main);
-      padding: 1rem; /* Tiny gap around the edges on PC */
+      padding: 1rem; /* Default gap for PC */
     }
 
     /* Full-Screen Falling Petals Canvas */
@@ -65,7 +65,7 @@
     /* ===== STAGE 1: ENVELOPE ===== */
     .envelope-stage {
       width: 100%;
-      max-width: 600px; /* Limits size on PC */
+      max-width: 600px; /* Keeps it neat on PC */
       position: relative;
       z-index: 15;
       perspective: 1400px;
@@ -74,7 +74,7 @@
       align-items: center;
       justify-content: center;
       margin: auto 0;
-      padding-bottom: 6rem; /* Space for nav */
+      padding-bottom: 6rem; 
     }
 
     @keyframes floatEntrance {
@@ -87,10 +87,7 @@
       background: linear-gradient(160deg, #FEFCF8 0%, #F5EFE8 100%);
       border-radius: 20px;
       padding: 3rem 1.5rem;
-      box-shadow: 
-        0 25px 50px rgba(120, 90, 70, 0.15),
-        0 5px 15px rgba(0, 0, 0, 0.03),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 25px 50px rgba(120, 90, 70, 0.15), 0 5px 15px rgba(0, 0, 0, 0.03);
       border: 3px solid var(--border-gold);
       text-align: center;
       overflow: hidden;
@@ -181,9 +178,7 @@
       cursor: pointer;
       position: relative;
       background: radial-gradient(circle at 35% 30%, #E2CDB8 0%, #D4BFA8 60%, #B89B7B 100%);
-      box-shadow: 
-        0 12px 28px rgba(160, 130, 100, 0.35),
-        inset 0 2px 6px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 12px 28px rgba(160, 130, 100, 0.35), inset 0 2px 6px rgba(255, 255, 255, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -192,18 +187,12 @@
     }
 
     @keyframes sealPop {
-      0%, 100% { transform: scale(1); box-shadow: 0 12px 28px rgba(160, 130, 100, 0.35), inset 0 2px 6px rgba(255, 255, 255, 0.6); }
-      50% { transform: scale(1.1); box-shadow: 0 20px 40px rgba(160, 130, 100, 0.5), inset 0 2px 10px rgba(255, 255, 255, 0.9); }
+      0%, 100% { transform: scale(1); box-shadow: 0 12px 28px rgba(160, 130, 100, 0.35); }
+      50% { transform: scale(1.1); box-shadow: 0 20px 40px rgba(160, 130, 100, 0.5); }
     }
 
-    .wax-seal-btn:hover {
-      transform: scale(1.15) rotate(-3deg);
-      animation-play-state: paused;
-    }
-
-    .wax-seal-btn:active {
-      transform: scale(0.95);
-    }
+    .wax-seal-btn:hover { transform: scale(1.15) rotate(-3deg); animation-play-state: paused; }
+    .wax-seal-btn:active { transform: scale(0.95); }
 
     .wax-seal-inner {
       width: 80px;
@@ -221,7 +210,6 @@
       color: #FFFFFF;
       font-weight: 700;
       letter-spacing: 1px;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
     .pointing-hand-hint {
@@ -229,7 +217,6 @@
       color: var(--border-gold-dark);
       animation: tapBob 1.5s infinite ease-in-out;
       margin-top: 5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     @keyframes tapBob {
@@ -251,7 +238,6 @@
       border-radius: 50px;
       border: 2px solid var(--border-rose);
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
       transition: all 0.2s ease;
     }
     .wax-tap-hint:hover { background: #F5EFE8; }
@@ -260,12 +246,12 @@
     .palace-suite {
       display: none; 
       width: 100%;
-      max-width: 680px; /* Keeps it from getting too wide on PC */
+      max-width: 680px; 
       position: relative;
       z-index: 15;
       animation: suiteUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       margin: 0 auto;
-      padding-bottom: 6rem; /* Crucial: Stops content hiding under bottom nav */
+      padding-bottom: 6rem; 
     }
 
     @keyframes suiteUnfold {
@@ -286,7 +272,7 @@
       border-radius: 0 0 24px 24px;
       padding: 1.5rem 1.5rem 3.5rem;
       position: relative;
-      box-shadow: 0 30px 60px rgba(120, 90, 70, 0.12), 0 5px 15px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 30px 60px rgba(120, 90, 70, 0.12);
       border: 3px solid var(--border-gold);
       border-top: none; 
       overflow: hidden; 
@@ -614,7 +600,7 @@
     /* Floating Controls */
     .floating-controls {
       position: fixed;
-      bottom: 85px; /* Stays just above the nav */
+      bottom: 85px; 
       right: 15px;
       z-index: 350;
       display: flex;
@@ -640,7 +626,7 @@
     .float-btn:hover { transform: scale(1.1); color: var(--border-gold-dark); background: #F5EFE8; }
     .float-btn.muted { opacity: 0.6; color: var(--text-light); border-color: #E5D8C5; }
 
-    /* FIXED BOTTOM EVENT NAVIGATION (The "App" Tab bar) */
+    /* FIXED BOTTOM EVENT NAVIGATION */
     .bottom-event-nav {
       position: fixed;
       bottom: 0;
@@ -698,6 +684,62 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
     .bottom-nav-btn.active i { color: var(--border-rose); }
+
+    /* ========================================================
+       MOBILE SPECIFIC OVERRIDES (The Zoom Fix)
+       ======================================================== */
+    @media (max-width: 680px) {
+      /* 1. Hide background on mobile for clean full-screen card look */
+      #heartsCanvas { display: none !important; }
+      body { 
+        background: var(--card-bg); 
+        padding: 0; /* Removes gaps around the card */
+      }
+
+      /* 2. Make the card fill the mobile screen */
+      .envelope-stage, .palace-suite {
+        max-width: 100%; 
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .royal-envelope, .palace-card {
+        border-radius: 0; /* Square edges on mobile */
+        border-left: none;
+        border-right: none;
+        padding-left: 1rem; /* Tighter padding for more text room */
+        padding-right: 1rem;
+      }
+      .palace-card { border-bottom: none; padding-bottom: 6rem; }
+      
+      /* 3. INCREASE FONT SIZES to fix the "zoomed out" look */
+      .env-names h1 { font-size: 3rem; }
+      .env-names .amp { font-size: 2.8rem; }
+      
+      .suite-couple-names { font-size: 2.1rem; line-height: 1.2; }
+      .suite-couple-names .script-amp { font-size: 2.2rem; }
+      
+      .event-main-title { font-size: 2.8rem; }
+      .event-description { font-size: 1rem; }
+      .event-tagline { font-size: 1.05rem; }
+      
+      .timeline-info { font-size: 1rem; }
+      .timeline-badge { font-size: 0.8rem; }
+      
+      .venue-title { font-size: 1.6rem; }
+      .venue-sub { font-size: 1rem; }
+      
+      .flip-num { font-size: 1.8rem; }
+      .flip-label { font-size: 0.6rem; }
+      
+      .blessing-title { font-size: 0.9rem; }
+      .blessing-sub { font-size: 0.95rem; }
+      .royal-input { font-size: 1rem; padding: 0.8rem; }
+      .action-pill-btn { font-size: 0.75rem; padding: 0.8rem 1.5rem; }
+
+      /* 4. Fix padding for inner frame and gap */
+      .palace-inner-frame { inset: 8px 8px 0 8px; border-bottom: none; }
+    }
   </style>
 </head>
 <body>
@@ -806,7 +848,7 @@
         <circle cx="80" cy="95" r="10" fill="#CBB192" opacity="0.7"/>
       </svg>
 
-      <div class="suite-content">
+      <div class="suite-content" id="suiteContent">
         <div class="suite-top-bar">
           <button class="seal-back-btn" onclick="resealEnvelope()">
             <i class="fas fa-envelope"></i> Cover
@@ -1031,16 +1073,23 @@
 
     // ===== EVENT TAB SWITCHING =====
     function switchEvent(num) {
+      // Switch panels
       document.querySelectorAll('.event-panel').forEach(p => p.classList.remove('active'));
       document.getElementById('panel' + num).classList.add('active');
 
+      // Switch top tabs
       document.querySelectorAll('.event-tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('tab' + num).classList.add('active');
 
+      // Switch bottom tabs
       document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('bottomTab' + num).classList.add('active');
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll smoothly to the top of the card (fixes jumping when zoomed)
+      const suiteContent = document.getElementById('suiteContent');
+      if (suiteContent) {
+        suiteContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
     // ===== OPEN CALENDAR DIRECTLY =====
