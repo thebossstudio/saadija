@@ -42,7 +42,6 @@
       overflow-x: hidden;
       scroll-behavior: smooth;
       overscroll-behavior-y: none;
-      height: 100%;
     }
 
     body {
@@ -56,7 +55,8 @@
       flex-direction: column;
       align-items: center;
       color: var(--text-main);
-      padding: 2rem 1rem 10rem 1rem;
+      /* Extra bottom padding so content never gets hidden behind the screen-locked nav */
+      padding: 2rem 1rem 9rem 1rem;
     }
 
     #heartsCanvas {
@@ -653,7 +653,7 @@
     .float-btn:hover { transform: scale(1.1); color: var(--border-gold-dark); background: #F5EFE8; }
     .float-btn.muted { opacity: 0.65; color: var(--text-light); border-color: #E5D8C5; }
 
-    /* LOCKED BOTTOM NAVIGATION - STAYS VISIBLE PERMANENTLY ON TOP */
+    /* SCREEN-LOCKED BOTTOM NAVIGATION FOR GOOGLE SITES VIEWPORT */
     .bottom-event-nav {
       position: fixed;
       bottom: 0;
@@ -665,7 +665,7 @@
       padding: 0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom, 0px));
       background: #FEFCF8;
       border-top: 2px solid var(--border-gold);
-      width: 100%;
+      width: 100vw;
       box-shadow: 0 -8px 25px rgba(120, 90, 70, 0.2);
       transition: bottom 0.3s ease;
     }
@@ -989,6 +989,7 @@
 
   </div>
 
+  <!-- FIXED BOTTOM NAVIGATION LOCKED TO THE BOTTOM OF THE SCREEN -->
   <div class="bottom-event-nav" id="bottomEventNav">
     <div class="bottom-event-nav-inner">
       <button class="bottom-nav-btn active" id="bottomTab1" onclick="switchEvent(1)">
@@ -1238,7 +1239,7 @@
 
     function updateCountdowns() {
       const now = new Date().getTime();
-      document.querySelectorAll('.countdown-grid').grid.forEach?.() || document.querySelectorAll('.countdown-grid').forEach(grid => {
+      document.querySelectorAll('.countdown-grid').forEach(grid => {
         const target = new Date(grid.getAttribute('data-target')).getTime();
         const distance = target - now;
 
@@ -1259,34 +1260,12 @@
       });
     }
 
-    function adjustBottomNav() {
-      const bottomNav = document.getElementById('bottomEventNav');
-      if (!bottomNav) return;
-      
-      if (window.visualViewport) {
-        const vv = window.visualViewport;
-        const offset = window.innerHeight - vv.height - vv.offsetTop;
-        if (offset > 0) {
-          bottomNav.style.bottom = `${offset}px`;
-        } else {
-          bottomNav.style.bottom = '0px';
-        }
-      }
-    }
-
     window.onload = function() { 
       updateCountdowns(); 
       setInterval(updateCountdowns, 1000); 
       animateHearts(); 
       loadApprovedBlessings(); 
-      adjustBottomNav();
     };
-
-    window.addEventListener('resize', adjustBottomNav);
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', adjustBottomNav);
-      window.visualViewport.addEventListener('scroll', adjustBottomNav);
-    }
   </script>
 </body>
 </html>
