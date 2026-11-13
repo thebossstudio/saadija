@@ -82,7 +82,6 @@
       border: 2px solid var(--border-rose); cursor: pointer; transition: all 0.2s ease;
     }
     .wax-tap-hint:hover { background: #F5EFE8; }
-    .env-footer-note { margin-top: 1.5rem; font-size: 0.9rem; font-weight: 600; color: var(--border-gold-dark); letter-spacing: 1px; position: relative; z-index: 5; }
     
     .palace-suite { display: none; width: 100%; max-width: 720px; position: relative; z-index: 15; animation: suiteUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; margin: 0 auto; }
     @keyframes suiteUnfold { from { opacity: 0; transform: translateY(24px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -507,67 +506,38 @@
   <audio id="bgMusic" preload="auto" loop></audio>
 
   <script>
-    // UPDATED GOOGLE SITES COMPATIBLE GUEST NAME PARSER
+    // HELPER + DIRECT STORAGE PARSER
     function applyPersonalizedGuest() {
       let guest = null;
 
-      // 1. Check if parent window has the search params (Bypasses iframe sandbox isolation for Google Sites)
-      try {
-        if (window.parent && window.parent.location) {
-          const parentSearch = window.parent.location.search;
-          if (parentSearch) {
-            const searchParams = new URLSearchParams(parentSearch);
-            guest = searchParams.get('to');
-          }
-          // Also check parent's hash just in case
-          if (!guest && window.parent.location.hash) {
-            const hashParams = new URLSearchParams(window.parent.location.hash.substring(1));
-            guest = hashParams.get('to');
-          }
-        }
-      } catch (e) {
-        console.log("Parent window access restricted");
-      }
+      // 1. Check direct query parameters (?to=...)
+      const params = new URLSearchParams(window.location.search);
+      guest = params.get('to');
 
-      // 2. Check document referrer
-      if (!guest && document.referrer) {
-        try {
-          const refUrl = new URL(document.referrer);
-          const refParams = new URLSearchParams(refUrl.search);
-          const refHashParams = refUrl.hash ? new URLSearchParams(refUrl.hash.substring(1)) : null;
-          guest = refParams.get('to') || (refHashParams ? refHashParams.get('to') : null);
-        } catch (e) {}
-      }
-
-      // 3. Check own window search/query params (?to=...)
-      if (!guest) {
-        const params = new URLSearchParams(window.location.search);
-        guest = params.get('to');
-      }
-
-      // 4. Check own hash fragment params (#to=...)
+      // 2. Check hash parameters (#to=...)
       if (!guest && window.location.hash) {
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         guest = hashParams.get('to');
       }
 
-      if (guest && guest.trim() !== "") {
-        processGuestName(guest);
+      // 3. Fallback to localStorage saved by helper.html
+      if (!guest) {
+        guest = localStorage.getItem('wedding_guest_name');
       }
-    }
 
-    function processGuestName(guest) {
-      const cleanName = decodeURIComponent(guest.trim().replace(/\+/g, " "));
-      
-      document.getElementById('envGuestBadge').style.display = 'inline-block';
-      document.getElementById('envGuestNameText').textContent = cleanName;
-      
-      document.getElementById('suiteGuestBadge').style.display = 'inline-block';
-      document.getElementById('suiteGuestNameText').textContent = cleanName;
-      
-      document.getElementById('guestName').value = cleanName;
-      
-      document.title = `Invitation for ${cleanName} · Saad & Khadija`;
+      if (guest && guest.trim() !== "") {
+        const cleanName = decodeURIComponent(guest.trim().replace(/\+/g, " "));
+        
+        document.getElementById('envGuestBadge').style.display = 'inline-block';
+        document.getElementById('envGuestNameText').textContent = cleanName;
+        
+        document.getElementById('suiteGuestBadge').style.display = 'inline-block';
+        document.getElementById('suiteGuestNameText').textContent = cleanName;
+        
+        document.getElementById('guestName').value = cleanName;
+        
+        document.title = `Invitation for ${cleanName} · Saad & Khadija`;
+      }
     }
 
     const firebaseConfig = {
@@ -805,8 +775,8 @@
           window.removeEventListener('click', unlockAudio);
           window.removeEventListener('touchstart', unlockAudio);
         };
-        window.addEventListener('click', unlockAudio);
-        window.addEventListener('touchstart', unlockAudio);
+        window.removeEventListener('click', unlockAudio);
+        window.removeEventListener('touchstart', unlockAudio);
       });
     });
 
