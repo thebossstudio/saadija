@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
@@ -506,40 +508,6 @@
   <audio id="bgMusic" preload="auto" loop></audio>
 
   <script>
-    // HELPER + DIRECT STORAGE PARSER
-    function applyPersonalizedGuest() {
-      let guest = null;
-
-      // 1. Check direct query parameters (?to=...)
-      const params = new URLSearchParams(window.location.search);
-      guest = params.get('to');
-
-      // 2. Check hash parameters (#to=...)
-      if (!guest && window.location.hash) {
-        const hashParams = new URLSearchParams(window.location.hash.substring(1));
-        guest = hashParams.get('to');
-      }
-
-      // 3. Fallback to localStorage saved by helper.html
-      if (!guest) {
-        guest = localStorage.getItem('wedding_guest_name');
-      }
-
-      if (guest && guest.trim() !== "") {
-        const cleanName = decodeURIComponent(guest.trim().replace(/\+/g, " "));
-        
-        document.getElementById('envGuestBadge').style.display = 'inline-block';
-        document.getElementById('envGuestNameText').textContent = cleanName;
-        
-        document.getElementById('suiteGuestBadge').style.display = 'inline-block';
-        document.getElementById('suiteGuestNameText').textContent = cleanName;
-        
-        document.getElementById('guestName').value = cleanName;
-        
-        document.title = `Invitation for ${cleanName} · Saad & Khadija`;
-      }
-    }
-
     const firebaseConfig = {
       apiKey: "AIzaSyC4ae_7CS-f7gO1sYobQ8wGZkm6Pi2XEdc",
       authDomain: "saadija-4132d.firebaseapp.com",
@@ -551,6 +519,54 @@
 
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
+
+    // FIREBASE ID LOOKUP PARSER
+    function applyPersonalizedGuest() {
+      let guestId = null;
+
+      const params = new URLSearchParams(window.location.search);
+      guestId = params.get('id');
+
+      if (!guestId) {
+        try {
+          if (window.parent && window.parent.location && window.parent.location.search) {
+            const parentParams = new URLSearchParams(window.parent.location.search);
+            guestId = parentParams.get('id');
+          }
+        } catch (e) {}
+      }
+
+      if (!guestId && document.referrer) {
+        try {
+          const refUrl = new URL(document.referrer);
+          const refParams = new URLSearchParams(refUrl.search);
+          guestId = refParams.get('id');
+        } catch (e) {}
+      }
+
+      if (guestId && guestId.trim() !== "") {
+        db.collection("invites").doc(guestId).get().then((doc) => {
+          if (doc.exists) {
+            const cleanName = doc.data().name;
+            processGuestName(cleanName);
+          }
+        }).catch((error) => {
+          console.error("Error fetching guest name:", error);
+        });
+      }
+    }
+
+    function processGuestName(cleanName) {
+      document.getElementById('envGuestBadge').style.display = 'inline-block';
+      document.getElementById('envGuestNameText').textContent = cleanName;
+      
+      document.getElementById('suiteGuestBadge').style.display = 'inline-block';
+      document.getElementById('suiteGuestNameText').textContent = cleanName;
+      
+      document.getElementById('guestName').value = cleanName;
+      
+      document.title = `Invitation for ${cleanName} · Saad & Khadija`;
+    }
 
     const canvas = document.getElementById('heartsCanvas');
     const ctx = canvas.getContext('2d');
@@ -775,8 +791,8 @@
           window.removeEventListener('click', unlockAudio);
           window.removeEventListener('touchstart', unlockAudio);
         };
-        window.removeEventListener('click', unlockAudio);
-        window.removeEventListener('touchstart', unlockAudio);
+        window.addEventListener('click', unlockAudio);
+        window.addEventListener('touchstart', unlockAudio);
       });
     });
 
