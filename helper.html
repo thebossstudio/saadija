@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading Invitation...</title>
+</head>
+<body>
+  <script>
+    // 1. Capture the 'to' parameter from the GitHub URL
+    const params = new URLSearchParams(window.location.search);
+    const guest = params.get('to');
+
+    if (guest) {
+      // 2. Save the guest name safely in browser storage
+      localStorage.setItem('wedding_guest_name', guest);
+    }
+
+    // 3. Redirect the user straight to your Google Site
+    // REPLACE THIS URL with your actual published Google Sites link
+    window.location.replace("https://sites.google.com/view/saadija/saadija");
+  </script>
+</body>
+</html>
