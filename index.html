@@ -1006,7 +1006,7 @@
 
   <script>
     // ==========================================
-    // FIREBASE CONFIGURATION (YOUR KEYS INSERTED)
+    // FIREBASE CONFIGURATION
     // ==========================================
     const firebaseConfig = {
       apiKey: "AIzaSyC4ae_7CS-f7gO1sYobQ8wGZkm6Pi2XEdc",
@@ -1186,12 +1186,12 @@
       });
     }
 
+    // FIXED QUERY: Loads approved duas instantly without requiring an index
     function loadApprovedBlessings() {
       const feed = document.getElementById('blessingFeed');
       
       db.collection("duas")
         .where("approved", "==", true)
-        .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
           feed.innerHTML = "";
           
