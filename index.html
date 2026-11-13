@@ -50,7 +50,7 @@
       flex-direction: column;
       align-items: center;
       color: var(--text-main);
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 6rem 1rem; /* Added bottom padding to prevent content from hiding under fixed navigation */
     }
 
     #heartsCanvas {
@@ -261,8 +261,7 @@
       z-index: 15;
       animation: suiteUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       margin: 0 auto;
-      /* Added bottom padding so content doesn't hide behind the fixed nav */
-      padding-bottom: 6rem; 
+      padding-bottom: 5rem; 
     }
 
     @keyframes suiteUnfold {
@@ -635,7 +634,7 @@
     /* Floating Controls */
     .floating-controls {
       position: fixed;
-      bottom: 90px;
+      bottom: 95px;
       right: 16px;
       z-index: 350;
       display: flex;
@@ -661,7 +660,9 @@
     .float-btn:hover { transform: scale(1.1); color: var(--border-gold-dark); background: #F5EFE8; }
     .float-btn.muted { opacity: 0.65; color: var(--text-light); border-color: #E5D8C5; }
 
-    /* FIXED BOTTOM EVENT NAVIGATION - FIXED TO SCREEN */
+    /* ========================================================
+       FIXED BOTTOM EVENT NAVIGATION (STAYS ON SCREEN WHILE SCROLLING)
+       ======================================================== */
     .bottom-event-nav {
       position: fixed;
       bottom: 0;
@@ -674,9 +675,7 @@
       background: linear-gradient(180deg, rgba(254, 252, 248, 0) 0%, rgba(254, 252, 248, 0.95) 40%, #FEFCF8 100%);
       border-top: 1px solid rgba(212, 191, 168, 0.35);
       width: 100%;
-      /* Removed transform and hidden state to ensure it never hides */
-      transform: translateY(0);
-      opacity: 1;
+      pointer-events: auto;
     }
 
     .bottom-event-nav-inner {
@@ -720,12 +719,10 @@
     }
     .bottom-nav-btn.active i { color: var(--border-rose); }
 
-    /* ========================================================
-       MOBILE FIX: CARD BORDER BECOMES SCREEN BORDER
-       ======================================================== */
+    /* Mobile adjustments */
     @media (max-width: 768px) {
       body {
-        padding: 0 0 6rem 0; /* Added bottom padding to avoid content hidden behind nav */
+        padding: 0 0 6rem 0;
         background: var(--card-bg);
       }
 
@@ -768,11 +765,6 @@
       .palace-inner-frame {
         inset: 0 8px 8px 8px;
         border-radius: 0;
-      }
-      
-      /* Adjust floating controls so they don't overlap the nav */
-      .floating-controls {
-        bottom: 90px;
       }
     }
   </style>
@@ -1044,21 +1036,21 @@
       </div>
     </div>
 
-    <!-- FIXED BOTTOM EVENT NAVIGATION -->
-    <div class="bottom-event-nav visible" id="bottomEventNav">
-      <div class="bottom-event-nav-inner">
-        <button class="bottom-nav-btn active" id="bottomTab1" onclick="switchEvent(1)">
-          <i class="fas fa-spa"></i> Hina
-        </button>
-        <button class="bottom-nav-btn" id="bottomTab2" onclick="switchEvent(2)">
-          <i class="fas fa-ring"></i> Barat
-        </button>
-        <button class="bottom-nav-btn" id="bottomTab3" onclick="switchEvent(3)">
-          <i class="fas fa-utensils"></i> Walima
-        </button>
-      </div>
-    </div>
+  </div>
 
+  <!-- FIXED BOTTOM EVENT NAVIGATION (STAYS ON SCREEN WHILE SCROLLING) -->
+  <div class="bottom-event-nav" id="bottomEventNav">
+    <div class="bottom-event-nav-inner">
+      <button class="bottom-nav-btn active" id="bottomTab1" onclick="switchEvent(1)">
+        <i class="fas fa-spa"></i> Hina
+      </button>
+      <button class="bottom-nav-btn" id="bottomTab2" onclick="switchEvent(2)">
+        <i class="fas fa-ring"></i> Barat
+      </button>
+      <button class="bottom-nav-btn" id="bottomTab3" onclick="switchEvent(3)">
+        <i class="fas fa-utensils"></i> Walima
+      </button>
+    </div>
   </div>
 
   <audio id="bgMusic" loop>
