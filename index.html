@@ -54,7 +54,8 @@
       flex-direction: column;
       align-items: center;
       color: var(--text-main);
-      padding: 2rem 1rem 7rem 1rem;
+      /* Added large bottom padding to ensure content scrolls past the fixed nav */
+      padding: 2rem 1rem 8rem 1rem;
     }
 
     #heartsCanvas {
@@ -263,7 +264,6 @@
       z-index: 15;
       animation: suiteUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       margin: 0 auto;
-      padding-bottom: 5rem; 
     }
 
     @keyframes suiteUnfold {
@@ -666,6 +666,8 @@
       border-top: 2px solid var(--border-gold);
       width: 100%;
       box-shadow: 0 -5px 20px rgba(120, 90, 70, 0.1);
+      /* Added transition for smooth entry if needed */
+      transition: bottom 0.3s ease;
     }
 
     .bottom-event-nav-inner {
@@ -1257,12 +1259,42 @@
       });
     }
 
+    /* 
+     * FIX FOR NAVIGATOR HIDING ON MOBILE SCREENS 
+     * This adjusts the bottom padding based on the actual visual viewport
+     * so the navbar stays above the browser's bottom toolbar.
+     */
+    function adjustBottomNav() {
+      const bottomNav = document.getElementById('bottomEventNav');
+      if (!bottomNav) return;
+      
+      // Use visualViewport if available to get the exact visible screen height
+      if (window.visualViewport) {
+        const vv = window.visualViewport;
+        const offset = window.innerHeight - vv.height - vv.offsetTop;
+        // Ensure the nav sits above the browser toolbar with extra padding
+        if (offset > 0) {
+          bottomNav.style.bottom = `${offset}px`;
+        } else {
+          bottomNav.style.bottom = '0px';
+        }
+      }
+    }
+
     window.onload = function() { 
       updateCountdowns(); 
       setInterval(updateCountdowns, 1000); 
       animateHearts(); 
       loadApprovedBlessings(); 
+      adjustBottomNav();
     };
+
+    // Listen for screen resize and scroll to adjust the nav bar dynamically
+    window.addEventListener('resize', adjustBottomNav);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', adjustBottomNav);
+      window.visualViewport.addEventListener('scroll', adjustBottomNav);
+    }
   </script>
 </body>
 </html>
