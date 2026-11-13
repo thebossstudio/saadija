@@ -651,16 +651,15 @@
       transition: all 0.2s ease;
     }
     .float-btn:hover { transform: scale(1.1); color: var(--border-gold-dark); background: #F5EFE8; }
-    .float-btn.muted { opacity: 0.65; color: var(--text-light); border-color: #E5D8C5; }
 
-   /* FLOATING BOTTOM NAVIGATION BAR (MOVED HIGHER UP - 2X) */
+    /* FLOATING BOTTOM NAVIGATION BAR (HIDDEN BY DEFAULT, SHOWN AFTER OPENING) */
     .bottom-event-nav {
       position: fixed;
-      bottom: 36px; /* Doubled from 16px to sit higher on the screen */
+      bottom: 48px;
       left: 1rem;
       right: 1rem;
       z-index: 999999;
-      display: flex;
+      display: none; /* Hidden on envelope screen */
       justify-content: center;
       padding: 0.4rem;
       background: #FEFCF8;
@@ -734,9 +733,6 @@
   <div class="floating-controls" id="floatingControls">
     <button class="float-btn heart-burst" onclick="burstHearts()" title="Bless Saad & Khadija">
       <i class="fas fa-heart"></i>
-    </button>
-    <button class="float-btn muted" id="musicBtn" onclick="toggleMusic()" title="Toggle Music">
-      <i class="fas fa-music" id="musicIcon"></i>
     </button>
   </div>
 
@@ -989,7 +985,7 @@
 
   </div>
 
-  <!-- FLOATING BOTTOM NAVIGATION BAR -->
+  <!-- FLOATING BOTTOM NAVIGATION BAR (SHOWN ONLY AFTER OPENING) -->
   <div class="bottom-event-nav" id="bottomEventNav">
     <div class="bottom-event-nav-inner">
       <button class="bottom-nav-btn active" id="bottomTab1" onclick="switchEvent(1)">
@@ -1004,9 +1000,8 @@
     </div>
   </div>
 
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_5f8e8b8b6f.mp3?filename=romantic-piano-114324.mp3" type="audio/mpeg">
-  </audio>
+  <!-- AUDIO PLAYER FOR PIANO PLAYLIST -->
+  <audio id="bgMusic" preload="auto" loop></audio>
 
   <script>
     const firebaseConfig = {
@@ -1116,14 +1111,16 @@
       const envelope = document.getElementById('royalEnvelope');
       const stage = document.getElementById('envelopeStage');
       const suite = document.getElementById('palaceSuite');
+      const bottomNav = document.getElementById('bottomEventNav');
       
       burstHearts();
-      tryStartMusic();
+      startRealPianoAudio();
 
       envelope.classList.add('opening');
       setTimeout(() => {
         stage.style.display = 'none';
         suite.style.display = 'block'; 
+        bottomNav.style.display = 'flex'; 
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 700); 
     }
@@ -1132,7 +1129,9 @@
       const envelope = document.getElementById('royalEnvelope');
       const stage = document.getElementById('envelopeStage');
       const suite = document.getElementById('palaceSuite');
+      const bottomNav = document.getElementById('bottomEventNav');
 
+      bottomNav.style.display = 'none'; 
       suite.style.display = 'none';
       envelope.classList.remove('opening');
       stage.style.display = 'flex';
@@ -1220,22 +1219,44 @@
       setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
+    // 5 different piano sound links rotation playlist
+    const pianoSounds = [
+      "https://cdn.pixabay.com/download/audio/2022/10/25/audio_5f8e8b8b6f.mp3?filename=romantic-piano-114324.mp3",
+      "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-piano-114324.mp3",
+      "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=gentle-piano-10620.mp3",
+      "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c375276326.mp3?filename=emotional-piano-8059.mp3",
+      "https://cdn.pixabay.com/download/audio/2022/04/29/audio_3234d0263f.mp3?filename=peaceful-piano-11041.mp3"
+    ];
+
+    let currentTrackIndex = 0;
     const bgMusic = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    let isMusicPlaying = false;
-    bgMusic.volume = 0.3;
+    bgMusic.volume = 0.4;
+    bgMusic.src = pianoSounds[currentTrackIndex];
 
-    function tryStartMusic() {
-      if (!isMusicPlaying) {
-        bgMusic.play().then(() => { isMusicPlaying = true; musicBtn.classList.remove('muted'); }).catch(()=>{});
-      }
+    bgMusic.addEventListener('ended', function() {
+      currentTrackIndex = (currentTrackIndex + 1) % pianoSounds.length;
+      bgMusic.src = pianoSounds[currentTrackIndex];
+      bgMusic.play().catch(()=>{});
+    });
+
+    function startRealPianoAudio() {
+      bgMusic.play().catch(() => {});
     }
 
-    function toggleMusic() {
-      if (isMusicPlaying) { bgMusic.pause(); isMusicPlaying = false; musicBtn.classList.add('muted');
-      } else { bgMusic.play().then(() => { isMusicPlaying = true; musicBtn.classList.remove('muted'); }).catch(()=>{}); }
-    }
-    document.addEventListener('click', function initAudio() { tryStartMusic(); document.removeEventListener('click', initAudio); });
+    // Attempt autoplay immediately on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      bgMusic.play().catch(() => {
+        // Fallback: browser blocks raw audio autoplay until first interaction, 
+        // so we add a silent listener to start playing on the very first touch/click anywhere on the page
+        const unlockAudio = () => {
+          bgMusic.play().catch(()=>{});
+          window.removeEventListener('click', unlockAudio);
+          window.removeEventListener('touchstart', unlockAudio);
+        };
+        window.addEventListener('click', unlockAudio);
+        window.addEventListener('touchstart', unlockAudio);
+      });
+    });
 
     function updateCountdowns() {
       const now = new Date().getTime();
