@@ -86,7 +86,7 @@
       width: 100%;
       background: linear-gradient(160deg, #FEFCF8 0%, #F5EFE8 100%);
       border-radius: 22px;
-      padding: 3.5rem 2rem;
+      padding: 3.5rem 2rem 2.5rem;
       box-shadow: 0 25px 50px rgba(120, 90, 70, 0.15), 0 5px 15px rgba(0, 0, 0, 0.03);
       border: 4px solid var(--border-gold);
       text-align: center;
@@ -241,6 +241,17 @@
       transition: all 0.2s ease;
     }
     .wax-tap-hint:hover { background: #F5EFE8; }
+
+    /* NEW CLASS FOR ENVELOPE FOOTER */
+    .env-footer-note {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--border-gold-dark);
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 5;
+    }
 
     /* ===== STAGE 2: PALACE SUITE (MAIN CARD) ===== */
     .palace-suite {
@@ -521,9 +532,32 @@
     .flip-num { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 2.1rem; color: var(--text-main); line-height: 1; display: block; }
     .flip-label { font-weight: 700; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-light); margin-top: 0.45rem; display: block; }
 
+    /* RSVP SECTION */
+    .rsvp-section {
+      margin: 2.5rem auto 1rem;
+      text-align: center;
+    }
+    .rsvp-section p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .rsvp-section a { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      font-weight: 700; 
+      color: var(--text-main); 
+      text-decoration: none; 
+      font-size: 1.25rem; 
+      padding: 0.8rem 1.8rem;
+      background: #FFFFFF;
+      border: 2px solid var(--border-gold);
+      border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(120, 90, 70, 0.05);
+      transition: all 0.2s ease;
+    }
+    .rsvp-section a:hover { background: #F5EFE8; transform: translateY(-2px); }
+
     /* GUEST BLESSINGS */
     .blessing-suite {
-      margin: 2rem auto 1.4rem;
+      margin: 1.5rem auto 1.4rem;
       background: #F5EFE8;
       border: 2px solid var(--border-gold);
       border-radius: 16px;
@@ -570,9 +604,6 @@
       border-bottom: 1px solid rgba(212, 191, 168, 0.2);
     }
     .blessing-note strong { font-weight: 700; color: var(--text-main); display: block; font-size: 0.82rem; margin-bottom: 3px; }
-
-    .suite-footer { margin-top: 1.8rem; font-size: 1.05rem; color: var(--text-muted); }
-    .suite-footer a { display: inline-flex; align-items: center; gap: 8px; margin-top: 0.5rem; font-weight: 700; color: var(--text-main); text-decoration: none; font-size: 1.15rem; }
 
     /* ===== UI ELEMENTS (TOAST & CONTROLS) ===== */
     .royal-toast {
@@ -805,6 +836,12 @@
           <i class="fas fa-sparkles"></i> Tap to Open
         </button>
       </div>
+
+      <!-- Added Family Text Here -->
+      <div class="env-footer-note">
+        Together with their families
+      </div>
+
     </div>
   </div>
 
@@ -991,6 +1028,13 @@
           </div>
         </div>
 
+        <!-- RSVP Section -->
+        <div class="rsvp-section">
+          <p>Kindly RSVP or contact us</p>
+          <a href="tel:03006745696"><i class="fas fa-phone-alt"></i> 0300 6745696</a>
+        </div>
+
+        <!-- Leave a Dua Section -->
         <div class="blessing-suite">
           <div class="blessing-title"><i class="fas fa-heart" style="color: var(--border-rose);"></i> Leave a Dua</div>
           <div class="blessing-sub">Or let us know if you can join us</div>
@@ -1008,11 +1052,6 @@
           </div>
         </div>
 
-        <div class="suite-footer">
-          <div>Kindly RSVP or contact us</div>
-          <a href="tel:03006745696"><i class="fas fa-phone-alt"></i> 0300 6745696</a>
-        </div>
-
       </div>
     </div>
   </div>
@@ -1022,6 +1061,126 @@
   </audio>
 
   <script>
+    // ==========================================
+    // OPTIMIZED HEARTS ANIMATION
+    // ==========================================
+    const canvas = document.getElementById('heartsCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
+
+    // Palette: Updated to light brown to match the theme
+    const heartPalette = ['#B89B7B', '#D4BFA8', '#CBB192', '#A3886C', '#E2CDB8'];
+
+    class HeartDrop {
+      constructor(isBurst = false) { 
+        this.reset(isBurst); 
+      }
+      
+      reset(isBurst = false) {
+        this.isBurst = isBurst;
+        this.dead = false;
+        
+        // Spawn from the very top of the screen
+        this.x = Math.random() * width;
+        this.y = (-20 - Math.random() * 100); 
+        
+        // Speed & movement
+        if (isBurst) {
+            this.speedY = (Math.random() * 4 + 3); 
+            this.opacity = 1;
+            this.opacityFade = Math.random() * 0.01 + 0.008; 
+        } else {
+            this.speedY = (Math.random() * 0.8 + 0.4); 
+            this.opacity = Math.random() * 0.5 + 0.4;
+            this.opacityFade = 0;
+        }
+
+        this.size = Math.random() * 10 + 5;
+        this.swayAmp = Math.random() * 1.5 + 0.5; 
+        this.swayFreq = Math.random() * 0.02 + 0.01;
+        this.phase = Math.random() * Math.PI * 2; 
+        this.rotSpeed = (Math.random() - 0.5) * 0.04;
+        this.rot = Math.random() * Math.PI * 2;
+        this.color = heartPalette[Math.floor(Math.random() * heartPalette.length)];
+      }
+      
+      update() {
+        this.phase += this.swayFreq; 
+        this.y += this.speedY; 
+        this.x += Math.sin(this.phase) * this.swayAmp;
+        this.rot += this.rotSpeed;
+        
+        if (this.isBurst) {
+            this.opacity -= this.opacityFade;
+            if (this.opacity <= 0 || this.y > height + 30) { 
+              this.dead = true; 
+            }
+        } else {
+            if (this.y > height + 20) { 
+              this.dead = true; // Background rain dies so new ones can spawn continuously
+            }
+        }
+      }
+      
+      draw() {
+        if (this.opacity <= 0) return;
+        
+        ctx.save(); 
+        ctx.translate(this.x, this.y); 
+        ctx.rotate(this.rot); 
+        ctx.globalAlpha = this.opacity; 
+        ctx.fillStyle = this.color; 
+        
+        const s = this.size; 
+        ctx.beginPath(); 
+        ctx.moveTo(0, s*0.3); 
+        ctx.bezierCurveTo(-s*0.5,-s*0.3, -s,s*0.2, 0,s); 
+        ctx.bezierCurveTo(s,s*0.2, s*0.5,-s*0.3, 0,s*0.3); 
+        ctx.fill(); 
+        ctx.restore();
+      }
+    }
+
+    const hearts = [];
+    
+    // Continuous Background Rain interval
+    setInterval(() => {
+      // Maintain a steady stream of around 15 background hearts
+      const bgHearts = hearts.filter(h => !h.isBurst).length;
+      if (bgHearts < 15) {
+        hearts.push(new HeartDrop(false));
+      }
+    }, 400); // Spawns a new one every 0.4 seconds if needed
+    
+    // Burst function - spawns 20 hearts from the top instantly
+    function burstHearts() {
+      for(let i=0; i<20; i++) {
+          hearts.push(new HeartDrop(true));
+      }
+      
+      // Keep total active hearts reasonable to prevent device lag (Max 60)
+      if (hearts.length > 60) {
+          hearts.splice(0, hearts.length - 60);
+      }
+    }
+
+    function animateHearts() {
+      ctx.clearRect(0, 0, width, height);
+      for(let i = hearts.length - 1; i >= 0; i--){
+        hearts[i].update(); 
+        hearts[i].draw(); 
+        if(hearts[i].dead) hearts.splice(i, 1);
+      }
+      requestAnimationFrame(animateHearts);
+    }
+
+
+    // ==========================================
+    // UI LOGIC
+    // ==========================================
     function unsealInvitation() {
       const envelope = document.getElementById('royalEnvelope');
       const stage = document.getElementById('envelopeStage');
@@ -1096,7 +1255,8 @@
       document.getElementById('guestName').value = '';
       document.getElementById('guestWish').value = '';
 
-      showToast('Thank you for your dua!'); burstHearts();
+      showToast('Thank you for your dua!'); 
+      burstHearts();
     }
 
     function showToast(msg) {
@@ -1166,51 +1326,6 @@
     if (window.visualViewport) {
       window.visualViewport.addEventListener('resize', syncBottomNavViewport);
       window.visualViewport.addEventListener('scroll', syncBottomNavViewport);
-    }
-
-    const canvas = document.getElementById('heartsCanvas');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
-
-    const heartPalette = ['#E2CDB8', '#D4BFA8', '#CBB192', '#F5EFE8', '#FFFFFF'];
-
-    class HeartDrop {
-      constructor(isBurst = false) { this.reset(isBurst); }
-      reset(isBurst = false) {
-        this.x = Math.random() * width;
-        this.y = isBurst ? (Math.random() * height * 0.4 - 50) : (-20 - Math.random() * height);
-        this.size = Math.random() * 10 + 5;
-        this.speedY = isBurst ? (Math.random() * 2 + 1) : (Math.random() * 1.2 + 0.5);
-        this.swayAmp = Math.random() * 1.2 + 0.3; this.swayFreq = Math.random() * 0.02 + 0.01;
-        this.phase = Math.random() * Math.PI * 2; this.rotSpeed = (Math.random() - 0.5) * 0.02;
-        this.rot = Math.random() * Math.PI * 2;
-        this.opacity = Math.random() * 0.6 + 0.4; 
-        this.color = heartPalette[Math.floor(Math.random() * heartPalette.length)];
-        this.isBurst = isBurst; this.dead = false;
-      }
-      update() {
-        this.phase += this.swayFreq; this.y += this.speedY; this.x += Math.sin(this.phase) * this.swayAmp;
-        this.rot += this.rotSpeed;
-        if (this.y > height + 20) { if (this.isBurst) { this.dead = true; } else { this.reset(false); this.y = -20; } }
-      }
-      draw() {
-        ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rot); ctx.globalAlpha = this.opacity; ctx.fillStyle = this.color; ctx.shadowBlur = 4; ctx.shadowColor = "rgba(120, 90, 70, 0.2)";
-        const s = this.size; ctx.beginPath(); ctx.moveTo(0, s*0.3); ctx.bezierCurveTo(-s*0.5,-s*0.3, -s,s*0.2, 0,s); ctx.bezierCurveTo(s,s*0.2, s*0.5,-s*0.3, 0,s*0.3); ctx.fill(); ctx.restore();
-      }
-    }
-
-    const hearts = [];
-    for(let i=0; i<40; i++) hearts.push(new HeartDrop(false));
-    function burstHearts() { for(let i=0; i<40; i++) hearts.push(new HeartDrop(true)); }
-    function animateHearts() {
-      ctx.clearRect(0, 0, width, height);
-      for(let i = hearts.length - 1; i >= 0; i--){
-        hearts[i].update(); hearts[i].draw(); if(hearts[i].dead) hearts.splice(i, 1);
-      }
-      requestAnimationFrame(animateHearts);
     }
 
     window.onload = function() { updateCountdowns(); setInterval(updateCountdowns, 1000); animateHearts(); };
