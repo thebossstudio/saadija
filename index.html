@@ -54,7 +54,7 @@
       flex-direction: column;
       align-items: center;
       color: var(--text-main);
-      padding: 2rem 1rem 6rem 1rem;
+      padding: 2rem 1rem 7rem 1rem;
     }
 
     #heartsCanvas {
@@ -652,6 +652,7 @@
     .float-btn:hover { transform: scale(1.1); color: var(--border-gold-dark); background: #F5EFE8; }
     .float-btn.muted { opacity: 0.65; color: var(--text-light); border-color: #E5D8C5; }
 
+    /* LOCKED BOTTOM NAVIGATION - STAYS VISIBLE PERMANENTLY */
     .bottom-event-nav {
       position: fixed;
       bottom: 0;
@@ -660,11 +661,11 @@
       z-index: 300;
       display: flex;
       justify-content: center;
-      padding: 0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom, 0px));
-      background: linear-gradient(180deg, rgba(254, 252, 248, 0) 0%, rgba(254, 252, 248, 0.95) 40%, #FEFCF8 100%);
-      border-top: 1px solid rgba(212, 191, 168, 0.35);
+      padding: 0.6rem 1rem calc(0.6rem + env(safe-area-inset-bottom, 0px));
+      background: #FEFCF8;
+      border-top: 2px solid var(--border-gold);
       width: 100%;
-      pointer-events: auto;
+      box-shadow: 0 -5px 20px rgba(120, 90, 70, 0.1);
     }
 
     .bottom-event-nav-inner {
@@ -674,7 +675,7 @@
       border: 2px solid var(--border-gold);
       border-radius: 50px;
       padding: 0.35rem;
-      box-shadow: 0 10px 30px rgba(120, 90, 70, 0.14);
+      box-shadow: 0 4px 15px rgba(120, 90, 70, 0.08);
       width: 100%;
       max-width: 580px;
     }
@@ -709,7 +710,7 @@
     .bottom-nav-btn.active i { color: var(--border-rose); }
 
     @media (max-width: 768px) {
-      body { padding: 0 0 6rem 0; background: var(--card-bg); }
+      body { padding: 0 0 7rem 0; background: var(--card-bg); }
       .envelope-stage { max-width: 100%; width: 100%; min-height: 100dvh; padding: 0; }
       .royal-envelope { border-radius: 0; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; border-width: 4px; padding: 2.5rem 1.2rem; }
       .envelope-border { border-radius: 0; inset: 8px; }
@@ -970,7 +971,7 @@
           <form class="blessing-form" onsubmit="addBlessing(event)">
             <div class="blessing-row">
               <input type="text" id="guestName" class="royal-input" placeholder="Your Name" required>
-              <input type="text" id="guestWish" class="royal-input" placeholder="Your dua or guests..." required>
+              <input type="text" id="guestWish" class="royal-input" placeholder="Barakallahu lakuma..." required>
             </div>
             <button type="submit" class="action-pill-btn btn-emerald" style="justify-content: center; margin-top: 5px;">
               <i class="fas fa-feather-alt"></i> Send
@@ -1005,9 +1006,6 @@
   </audio>
 
   <script>
-    // ==========================================
-    // FIREBASE CONFIGURATION
-    // ==========================================
     const firebaseConfig = {
       apiKey: "AIzaSyC4ae_7CS-f7gO1sYobQ8wGZkm6Pi2XEdc",
       authDomain: "saadija-4132d.firebaseapp.com",
@@ -1186,7 +1184,6 @@
       });
     }
 
-    // FIXED QUERY: Loads approved duas instantly without requiring an index
     function loadApprovedBlessings() {
       const feed = document.getElementById('blessingFeed');
       
