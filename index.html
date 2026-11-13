@@ -625,9 +625,10 @@
     }
     .royal-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
+   /* FLOATING CONTROLS (MOVED HIGHER UP) */
     .floating-controls {
       position: fixed;
-      bottom: 95px;
+      bottom: 135px; /* Increased from 95px to 135px */
       right: 16px;
       z-index: 350;
       display: flex;
@@ -718,6 +719,11 @@
       .palace-suite { max-width: 100%; width: 100%; margin: 0; }
       .palace-card { border-radius: 0; border-left-width: 4px; border-right-width: 4px; border-bottom-width: 4px; padding: 2rem 1.2rem 3rem; }
       .palace-inner-frame { inset: 0 8px 8px 8px; border-radius: 0; }
+      
+      /* Ensure floating controls stay above mobile nav */
+      .floating-controls {
+        bottom: 125px; /* Adjusted for mobile screens */
+      }
     }
   </style>
 </head>
