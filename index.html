@@ -11,6 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
   <style>
     * {
       margin: 0;
@@ -50,7 +54,7 @@
       flex-direction: column;
       align-items: center;
       color: var(--text-main);
-      padding: 2rem 1rem 6rem 1rem; /* Added bottom padding to prevent content from hiding under fixed navigation */
+      padding: 2rem 1rem 6rem 1rem;
     }
 
     #heartsCanvas {
@@ -62,7 +66,6 @@
       z-index: 50;
     }
 
-    /* ===== STAGE 1: ENVELOPE ===== */
     .envelope-stage {
       width: 100%;
       max-width: 650px;
@@ -252,7 +255,6 @@
       z-index: 5;
     }
 
-    /* ===== STAGE 2: PALACE SUITE (MAIN CARD) ===== */
     .palace-suite {
       display: none; 
       width: 100%;
@@ -382,7 +384,6 @@
       font-weight: 400;
     }
 
-    /* Event Tab Navigation */
     .event-tabs-nav {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -429,7 +430,6 @@
     }
     .event-tab-btn.active .tab-date { color: var(--border-rose); }
 
-    /* Event Panels */
     .event-panel { display: none; animation: panelFade 0.4s ease forwards; }
     .event-panel.active { display: block; }
     @keyframes panelFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -459,7 +459,6 @@
     .event-tagline { font-weight: 500; font-style: italic; color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1.15rem; }
     .event-description { font-weight: 400; font-size: 1.08rem; color: var(--text-muted); line-height: 1.7; margin: 0 auto 2rem; max-width: 65ch; }
 
-    /* Itinerary Timeline */
     .itinerary-box {
       background: #F5EFE8;
       border: 2px solid var(--border-gold);
@@ -477,7 +476,6 @@
     .timeline-info { font-weight: 600; color: var(--text-main); font-size: 1.05rem; }
     .timeline-badge { font-weight: 700; font-size: 0.85rem; color: var(--border-gold-dark); background: #FFFFFF; padding: 0.4rem 0.8rem; border-radius: 50px; border: 1.5px solid var(--border-gold); white-space: nowrap; }
 
-    /* Venue Arch Card */
     .venue-arch-card {
       margin: 0 auto 2rem;
       background: #FFFFFF;
@@ -493,7 +491,6 @@
     .venue-sub { font-weight: 400; font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.4rem; }
     .venue-actions { display: flex; justify-content: center; gap: 0.85rem; position: relative; z-index: 2; flex-wrap: wrap; }
 
-    /* Standardized Large Action Buttons */
     .action-pill-btn {
       display: inline-flex;
       align-items: center;
@@ -515,7 +512,6 @@
     .btn-outline-gold { background: #FFFFFF; color: var(--text-main); border: 1.5px solid var(--border-gold); }
     .btn-outline-gold:hover { background: #F5EFE8; transform: translateY(-2px); }
 
-    /* Countdown */
     .countdown-section { margin: 2rem auto 2rem; padding-top: 1.5rem; border-top: 2px solid rgba(212, 191, 168, 0.45); }
     .countdown-heading { font-weight: 800; font-size: 0.88rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-main); margin-bottom: 1.2rem; }
     .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
@@ -531,7 +527,6 @@
     .flip-num { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 2.1rem; color: var(--text-main); line-height: 1; display: block; }
     .flip-label { font-weight: 700; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-light); margin-top: 0.45rem; display: block; }
 
-    /* RSVP SECTION */
     .rsvp-section {
       margin: 2.5rem auto 1rem;
       text-align: center;
@@ -554,7 +549,6 @@
     }
     .rsvp-section a:hover { background: #F5EFE8; transform: translateY(-2px); }
 
-    /* GUEST BLESSINGS */
     .blessing-suite {
       margin: 1.5rem auto 1.4rem;
       background: #F5EFE8;
@@ -604,7 +598,6 @@
     }
     .blessing-note strong { font-weight: 700; color: var(--text-main); display: block; font-size: 0.82rem; margin-bottom: 3px; }
 
-    /* ===== UI ELEMENTS (TOAST & CONTROLS) ===== */
     .royal-toast {
       position: fixed;
       top: 20px;
@@ -631,7 +624,6 @@
     }
     .royal-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-    /* Floating Controls */
     .floating-controls {
       position: fixed;
       bottom: 95px;
@@ -660,9 +652,6 @@
     .float-btn:hover { transform: scale(1.1); color: var(--border-gold-dark); background: #F5EFE8; }
     .float-btn.muted { opacity: 0.65; color: var(--text-light); border-color: #E5D8C5; }
 
-    /* ========================================================
-       FIXED BOTTOM EVENT NAVIGATION (STAYS ON SCREEN WHILE SCROLLING)
-       ======================================================== */
     .bottom-event-nav {
       position: fixed;
       bottom: 0;
@@ -719,53 +708,14 @@
     }
     .bottom-nav-btn.active i { color: var(--border-rose); }
 
-    /* Mobile adjustments */
     @media (max-width: 768px) {
-      body {
-        padding: 0 0 6rem 0;
-        background: var(--card-bg);
-      }
-
-      .envelope-stage {
-        max-width: 100%;
-        width: 100%;
-        min-height: 100dvh;
-        padding: 0;
-      }
-
-      .royal-envelope {
-        border-radius: 0;
-        min-height: 100dvh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border-width: 4px;
-        padding: 2.5rem 1.2rem;
-      }
-
-      .envelope-border {
-        border-radius: 0;
-        inset: 8px;
-      }
-
-      .palace-suite {
-        max-width: 100%;
-        width: 100%;
-        margin: 0;
-      }
-
-      .palace-card {
-        border-radius: 0;
-        border-left-width: 4px;
-        border-right-width: 4px;
-        border-bottom-width: 4px;
-        padding: 2rem 1.2rem 3rem;
-      }
-
-      .palace-inner-frame {
-        inset: 0 8px 8px 8px;
-        border-radius: 0;
-      }
+      body { padding: 0 0 6rem 0; background: var(--card-bg); }
+      .envelope-stage { max-width: 100%; width: 100%; min-height: 100dvh; padding: 0; }
+      .royal-envelope { border-radius: 0; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; border-width: 4px; padding: 2.5rem 1.2rem; }
+      .envelope-border { border-radius: 0; inset: 8px; }
+      .palace-suite { max-width: 100%; width: 100%; margin: 0; }
+      .palace-card { border-radius: 0; border-left-width: 4px; border-right-width: 4px; border-bottom-width: 4px; padding: 2rem 1.2rem 3rem; }
+      .palace-inner-frame { inset: 0 8px 8px 8px; border-radius: 0; }
     }
   </style>
 </head>
@@ -1009,13 +959,11 @@
           </div>
         </div>
 
-        <!-- RSVP Section -->
         <div class="rsvp-section">
           <p>Kindly RSVP or contact us</p>
           <a href="tel:03006745696"><i class="fas fa-phone-alt"></i> 0300 6745696</a>
         </div>
 
-        <!-- Leave a Dua Section -->
         <div class="blessing-suite">
           <div class="blessing-title"><i class="fas fa-heart" style="color: var(--border-rose);"></i> Leave a Dua</div>
           <div class="blessing-sub">Or let us know if you can join us</div>
@@ -1038,7 +986,6 @@
 
   </div>
 
-  <!-- FIXED BOTTOM EVENT NAVIGATION (STAYS ON SCREEN WHILE SCROLLING) -->
   <div class="bottom-event-nav" id="bottomEventNav">
     <div class="bottom-event-nav-inner">
       <button class="bottom-nav-btn active" id="bottomTab1" onclick="switchEvent(1)">
@@ -1059,8 +1006,20 @@
 
   <script>
     // ==========================================
-    // OPTIMIZED HEARTS ANIMATION
+    // FIREBASE CONFIGURATION (YOUR KEYS INSERTED)
     // ==========================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyC4ae_7CS-f7gO1sYobQ8wGZkm6Pi2XEdc",
+      authDomain: "saadija-4132d.firebaseapp.com",
+      projectId: "saadija-4132d",
+      storageBucket: "saadija-4132d.firebasestorage.app",
+      messagingSenderId: "962883200979",
+      appId: "1:962883200979:web:c4d56c77b48db2f558b126"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     const canvas = document.getElementById('heartsCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -1078,7 +1037,6 @@
       reset(isBurst = false) {
         this.isBurst = isBurst;
         this.dead = false;
-        
         this.x = Math.random() * width;
         this.y = (-20 - Math.random() * 100); 
         
@@ -1109,25 +1067,19 @@
         
         if (this.isBurst) {
             this.opacity -= this.opacityFade;
-            if (this.opacity <= 0 || this.y > height + 30) { 
-              this.dead = true; 
-            }
+            if (this.opacity <= 0 || this.y > height + 30) { this.dead = true; }
         } else {
-            if (this.y > height + 20) { 
-              this.dead = true; 
-            }
+            if (this.y > height + 20) { this.dead = true; }
         }
       }
       
       draw() {
         if (this.opacity <= 0) return;
-        
         ctx.save(); 
         ctx.translate(this.x, this.y); 
         ctx.rotate(this.rot); 
         ctx.globalAlpha = this.opacity; 
         ctx.fillStyle = this.color; 
-        
         const s = this.size; 
         ctx.beginPath(); 
         ctx.moveTo(0, s*0.3); 
@@ -1139,37 +1091,26 @@
     }
 
     const hearts = [];
-    
     setInterval(() => {
-      const bgHearts = hearts.filter(h => !h.isBurst).length;
-      if (bgHearts < 15) {
+      if (hearts.filter(h => !h.isBurst).length < 15) {
         hearts.push(new HeartDrop(false));
       }
     }, 400); 
     
     function burstHearts() {
-      for(let i=0; i<20; i++) {
-          hearts.push(new HeartDrop(true));
-      }
-      if (hearts.length > 60) {
-          hearts.splice(0, hearts.length - 60);
-      }
+      for(let i=0; i<20; i++) { hearts.push(new HeartDrop(true)); }
+      if (hearts.length > 60) { hearts.splice(0, hearts.length - 60); }
     }
 
     function animateHearts() {
       ctx.clearRect(0, 0, width, height);
       for(let i = hearts.length - 1; i >= 0; i--){
-        hearts[i].update(); 
-        hearts[i].draw(); 
+        hearts[i].update(); hearts[i].draw(); 
         if(hearts[i].dead) hearts.splice(i, 1);
       }
       requestAnimationFrame(animateHearts);
     }
 
-
-    // ==========================================
-    // UI LOGIC
-    // ==========================================
     function unsealInvitation() {
       const envelope = document.getElementById('royalEnvelope');
       const stage = document.getElementById('envelopeStage');
@@ -1215,7 +1156,6 @@
 
     function openCalendar(title, start, end, location) {
       const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent('Wedding Celebration of Saad & Khadija Jamil. For info: 0300 6745696')}&location=${encodeURIComponent(location)}`;
-      
       showToast('Opening Calendar...'); 
       burstHearts();
       window.open(googleCalUrl, '_blank');
@@ -1225,23 +1165,52 @@
       e.preventDefault();
       const name = document.getElementById('guestName').value.trim();
       const wish = document.getElementById('guestWish').value.trim();
-      const feed = document.getElementById('blessingFeed');
 
       if (!name || !wish) return;
 
-      const note = document.createElement('div');
-      note.className = 'blessing-note';
-      const strong = document.createElement('strong');
-      strong.textContent = name;
-      note.appendChild(strong);
-      note.appendChild(document.createTextNode(wish));
+      db.collection("duas").add({
+        name: name,
+        wish: wish,
+        approved: false,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(() => {
+        document.getElementById('guestName').value = '';
+        document.getElementById('guestWish').value = '';
+        showToast('Dua sent! Pending review.'); 
+        burstHearts();
+      })
+      .catch((error) => {
+        console.error("Error adding dua: ", error);
+        showToast('Error sending dua. Try again.');
+      });
+    }
 
-      feed.insertBefore(note, feed.firstChild);
-      document.getElementById('guestName').value = '';
-      document.getElementById('guestWish').value = '';
+    function loadApprovedBlessings() {
+      const feed = document.getElementById('blessingFeed');
+      
+      db.collection("duas")
+        .where("approved", "==", true)
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) => {
+          feed.innerHTML = "";
+          
+          if(snapshot.empty) {
+            feed.innerHTML = '<div class="blessing-note"><strong>Be the first!</strong>Leave your lovely dua above.</div>';
+            return;
+          }
 
-      showToast('Thank you for your dua!'); 
-      burstHearts();
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            const note = document.createElement('div');
+            note.className = 'blessing-note';
+            const strong = document.createElement('strong');
+            strong.textContent = data.name;
+            note.appendChild(strong);
+            note.appendChild(document.createTextNode(data.wish));
+            feed.appendChild(note);
+          });
+        });
     }
 
     function showToast(msg) {
@@ -1291,7 +1260,12 @@
       });
     }
 
-    window.onload = function() { updateCountdowns(); setInterval(updateCountdowns, 1000); animateHearts(); };
+    window.onload = function() { 
+      updateCountdowns(); 
+      setInterval(updateCountdowns, 1000); 
+      animateHearts(); 
+      loadApprovedBlessings(); 
+    };
   </script>
 </body>
 </html>
