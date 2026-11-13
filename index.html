@@ -40,8 +40,9 @@
     html, body {
       width: 100%;
       overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
-      overscroll-behavior-y: none;
     }
 
     body {
@@ -55,7 +56,6 @@
       flex-direction: column;
       align-items: center;
       color: var(--text-main);
-      /* Extra bottom padding so content never gets hidden behind the screen-locked nav */
       padding: 2rem 1rem 9rem 1rem;
     }
 
@@ -653,10 +653,10 @@
     .float-btn:hover { transform: scale(1.1); color: var(--border-gold-dark); background: #F5EFE8; }
     .float-btn.muted { opacity: 0.65; color: var(--text-light); border-color: #E5D8C5; }
 
-   /* FLOATING BOTTOM NAVIGATION BAR (VISIBLE ABOVE SCREEN EDGE) */
+    /* FLOATING BOTTOM NAVIGATION BAR (VISIBLE ABOVE SCREEN EDGE) */
     .bottom-event-nav {
       position: fixed;
-      bottom: 16px; /* Raises it nicely above the bottom edge */
+      bottom: 16px;
       left: 1rem;
       right: 1rem;
       z-index: 999999;
@@ -665,7 +665,7 @@
       padding: 0.4rem;
       background: #FEFCF8;
       border: 2px solid var(--border-gold);
-      border-radius: 50px; /* Gives it a gorgeous floating pill shape */
+      border-radius: 50px;
       box-shadow: 0 10px 30px rgba(120, 90, 70, 0.25);
       transition: bottom 0.3s ease;
     }
@@ -989,7 +989,7 @@
 
   </div>
 
-  <!-- FIXED BOTTOM NAVIGATION LOCKED TO THE BOTTOM OF THE SCREEN -->
+  <!-- FLOATING BOTTOM NAVIGATION BAR -->
   <div class="bottom-event-nav" id="bottomEventNav">
     <div class="bottom-event-nav-inner">
       <button class="bottom-nav-btn active" id="bottomTab1" onclick="switchEvent(1)">
