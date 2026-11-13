@@ -143,7 +143,7 @@
       z-index: 3;
     }
 
-    /* UPDATED: envelope names area — now host name + invited son */
+    /* UPDATED: envelope names area — host name + full invitation sentence */
     .env-names {
       position: relative;
       z-index: 3;
@@ -160,12 +160,14 @@
     }
 
     .env-invite-line {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 500;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       color: var(--border-rose);
-      margin: 0.9rem 0 0.4rem;
+      margin: 1rem auto 0.4rem;
+      max-width: 38ch;
+      line-height: 1.6;
     }
 
     .env-son-name {
@@ -785,10 +787,12 @@
       <div class="env-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
       <div class="env-kicker">Wedding Invitation</div>
       
-      <!-- UPDATED: HOST + SON NAMES -->
+      <!-- UPDATED: HOST + FULL INVITATION SENTENCE ON ENVELOPE -->
       <div class="env-names">
         <div class="env-host-name">Mr &amp; Mrs Muhammad Javed Iqbal</div>
-        <div class="env-invite-line">cordially invite you to celebrate</div>
+        <div class="env-invite-line">
+          We cordially invite you to join us in celebrating the special occasion of our beloved son
+        </div>
         <div class="env-son-name">
           Saad Javed <span class="amp">&amp;</span> Khadija Jamil
         </div>
@@ -856,7 +860,7 @@
           </button>
         </div>
 
-        <!-- UPDATED: HOST BANNER + SON NAMES -->
+        <!-- HOST BANNER + SON NAMES -->
         <div class="suite-couple-banner">
           <div class="suite-host-name">Mr &amp; Mrs Muhammad Javed Iqbal</div>
           <div class="suite-invite-text">
