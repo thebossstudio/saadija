@@ -39,8 +39,8 @@
 
     html, body {
       width: 100%;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
+      height: 100%; /* Lock body height to screen */
+      overflow: hidden; /* Prevent the whole body from scrolling */
     }
 
     body {
@@ -49,13 +49,10 @@
       background-attachment: fixed;
       font-family: 'Inter', sans-serif;
       font-weight: 400;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       color: var(--text-main);
-      /* Added large bottom padding to ensure content scrolls past the fixed nav */
-      padding: 2rem 1rem 8rem 1rem;
     }
 
     #heartsCanvas {
@@ -67,10 +64,11 @@
       z-index: 50;
     }
 
+    /* Envelope Stage */
     .envelope-stage {
       width: 100%;
+      height: 100%;
       max-width: 650px;
-      min-height: 85vh;
       position: relative;
       z-index: 15;
       perspective: 1400px;
@@ -79,6 +77,8 @@
       align-items: center;
       justify-content: center;
       margin: auto;
+      padding: 2rem 1rem;
+      overflow-y: auto; /* Allow scroll if needed, but usually fits */
     }
 
     @keyframes floatEntrance {
@@ -256,14 +256,18 @@
       z-index: 5;
     }
 
+    /* ===== STAGE 2: PALACE SUITE (MAIN CARD) ===== */
     .palace-suite {
       display: none; 
       width: 100%;
+      height: 100%; /* Take full screen height */
       max-width: 720px; 
       position: relative;
       z-index: 15;
       animation: suiteUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       margin: 0 auto;
+      overflow-y: auto; /* ALLOW SCROLLING INSIDE THIS CONTAINER */
+      padding: 2rem 1rem 7rem 1rem; /* Large bottom padding so content clears the nav */
     }
 
     @keyframes suiteUnfold {
@@ -666,8 +670,6 @@
       border-top: 2px solid var(--border-gold);
       width: 100%;
       box-shadow: 0 -5px 20px rgba(120, 90, 70, 0.1);
-      /* Added transition for smooth entry if needed */
-      transition: bottom 0.3s ease;
     }
 
     .bottom-event-nav-inner {
@@ -712,11 +714,9 @@
     .bottom-nav-btn.active i { color: var(--border-rose); }
 
     @media (max-width: 768px) {
-      body { padding: 0 0 7rem 0; background: var(--card-bg); }
-      .envelope-stage { max-width: 100%; width: 100%; min-height: 100dvh; padding: 0; }
-      .royal-envelope { border-radius: 0; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; border-width: 4px; padding: 2.5rem 1.2rem; }
+      .royal-envelope { border-radius: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; border-width: 4px; padding: 2.5rem 1.2rem; }
       .envelope-border { border-radius: 0; inset: 8px; }
-      .palace-suite { max-width: 100%; width: 100%; margin: 0; }
+      .palace-suite { max-width: 100%; margin: 0; padding: 0 0 6rem 0; } /* Adjust padding */
       .palace-card { border-radius: 0; border-left-width: 4px; border-right-width: 4px; border-bottom-width: 4px; padding: 2rem 1.2rem 3rem; }
       .palace-inner-frame { inset: 0 8px 8px 8px; border-radius: 0; }
     }
@@ -1259,42 +1259,12 @@
       });
     }
 
-    /* 
-     * FIX FOR NAVIGATOR HIDING ON MOBILE SCREENS 
-     * This adjusts the bottom padding based on the actual visual viewport
-     * so the navbar stays above the browser's bottom toolbar.
-     */
-    function adjustBottomNav() {
-      const bottomNav = document.getElementById('bottomEventNav');
-      if (!bottomNav) return;
-      
-      // Use visualViewport if available to get the exact visible screen height
-      if (window.visualViewport) {
-        const vv = window.visualViewport;
-        const offset = window.innerHeight - vv.height - vv.offsetTop;
-        // Ensure the nav sits above the browser toolbar with extra padding
-        if (offset > 0) {
-          bottomNav.style.bottom = `${offset}px`;
-        } else {
-          bottomNav.style.bottom = '0px';
-        }
-      }
-    }
-
     window.onload = function() { 
       updateCountdowns(); 
       setInterval(updateCountdowns, 1000); 
       animateHearts(); 
       loadApprovedBlessings(); 
-      adjustBottomNav();
     };
-
-    // Listen for screen resize and scroll to adjust the nav bar dynamically
-    window.addEventListener('resize', adjustBottomNav);
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', adjustBottomNav);
-      window.visualViewport.addEventListener('scroll', adjustBottomNav);
-    }
   </script>
 </body>
 </html>
