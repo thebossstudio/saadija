@@ -1081,12 +1081,37 @@
   <audio id="bgMusic" preload="auto" loop></audio>
 
   <script>
-    // READ PERSONALIZED GUEST NAME FROM URL (?to=Guest+Name)
+    // GOOGLE SITES COMPATIBLE GUEST NAME PARSER
     function applyPersonalizedGuest() {
-      const params = new URLSearchParams(window.location.search);
-      const guest = params.get('to');
+      let guest = null;
+
+      // 1. Check parent Google Sites referrer URL (when embedded inside iframe)
+      try {
+        if (document.referrer) {
+          const refUrl = new URL(document.referrer);
+          const refParams = new URLSearchParams(refUrl.search);
+          const refHashParams = refUrl.hash ? new URLSearchParams(refUrl.hash.substring(1)) : null;
+          
+          guest = refParams.get('to') || (refHashParams ? refHashParams.get('to') : null);
+        }
+      } catch (e) {
+        console.log("Referrer check restricted");
+      }
+
+      // 2. Check standard search/query params (?to=...)
+      if (!guest) {
+        const params = new URLSearchParams(window.location.search);
+        guest = params.get('to');
+      }
+
+      // 3. Check hash fragment params (#to=...)
+      if (!guest && window.location.hash) {
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        guest = hashParams.get('to');
+      }
+
       if (guest && guest.trim() !== "") {
-        const cleanName = guest.trim();
+        const cleanName = decodeURIComponent(guest.trim().replace(/\+/g, " "));
         
         // Show on Envelope
         document.getElementById('envGuestBadge').style.display = 'inline-block';
