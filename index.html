@@ -178,7 +178,7 @@
       margin-bottom: 2.2rem;
     }
 
-    /* NEW: "Together with their families" just above host name on envelope */
+    /* "Together with their families" just above host name on envelope */
     .env-together-line {
       font-size: 0.82rem;
       font-weight: 600;
@@ -419,7 +419,7 @@
       border-bottom: 2px solid rgba(212, 191, 168, 0.45);
     }
 
-    /* NEW: "Together with their families" just above host name inside suite */
+    /* "Together with their families" just above host name inside suite */
     .suite-together-line {
       font-size: 0.78rem;
       font-weight: 700;
@@ -1103,48 +1103,79 @@
     function applyPersonalizedGuest() {
       let guest = null;
 
-      // 1. Check parent Google Sites referrer URL (when embedded inside iframe)
+      // 1. Check if parent window has the hash (Bypasses iframe sandbox hash isolation for Google Sites)
       try {
-        if (document.referrer) {
+        if (window.parent && window.parent.location) {
+          const parentHash = window.parent.location.hash;
+          if (parentHash) {
+            const hashParams = new URLSearchParams(parentHash.substring(1));
+            guest = hashParams.get('to');
+          }
+          // Also check parent's search params just in case
+          if (!guest) {
+            const parentSearch = window.parent.location.search;
+            if (parentSearch) {
+              const searchParams = new URLSearchParams(parentSearch);
+              guest = searchParams.get('to');
+            }
+          }
+        }
+      } catch (e) {
+        console.log("Parent window access restricted");
+      }
+
+      // 2. Check document referrer (if parent window access fails)
+      if (!guest && document.referrer) {
+        try {
           const refUrl = new URL(document.referrer);
           const refParams = new URLSearchParams(refUrl.search);
           const refHashParams = refUrl.hash ? new URLSearchParams(refUrl.hash.substring(1)) : null;
-          
           guest = refParams.get('to') || (refHashParams ? refHashParams.get('to') : null);
-        }
-      } catch (e) {
-        console.log("Referrer check restricted");
+        } catch (e) {}
       }
 
-      // 2. Check standard search/query params (?to=...)
+      // 3. Check own window search/query params (?to=...)
       if (!guest) {
         const params = new URLSearchParams(window.location.search);
         guest = params.get('to');
       }
 
-      // 3. Check hash fragment params (#to=...)
+      // 4. Check own hash fragment params (#to=...) (Only works if opened directly, not inside iframe)
       if (!guest && window.location.hash) {
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         guest = hashParams.get('to');
       }
 
-      if (guest && guest.trim() !== "") {
-        const cleanName = decodeURIComponent(guest.trim().replace(/\+/g, " "));
-        
-        // Show on Envelope
-        document.getElementById('envGuestBadge').style.display = 'inline-block';
-        document.getElementById('envGuestNameText').textContent = cleanName;
-        
-        // Show inside Suite
-        document.getElementById('suiteGuestBadge').style.display = 'inline-block';
-        document.getElementById('suiteGuestNameText').textContent = cleanName;
-        
-        // Pre-fill Dua name box
-        document.getElementById('guestName').value = cleanName;
-        
-        // Update Page Title
-        document.title = `Invitation for ${cleanName} · Saad & Khadija`;
+      // 5. Listen for postMessage from a wrapper script (Ultimate fallback)
+      if (!guest) {
+        window.addEventListener('message', (event) => {
+          if (event.data && event.data.type === 'GUEST_NAME') {
+            processGuestName(event.data.name);
+          }
+        });
       }
+
+      if (guest && guest.trim() !== "") {
+        processGuestName(guest);
+      }
+    }
+
+    function processGuestName(guest) {
+      const cleanName = decodeURIComponent(guest.trim().replace(/\+/g, " "));
+      
+      // Show on Envelope
+      document.getElementById('envGuestBadge').style.display = 'inline-block';
+      document.getElementById('envGuestNameText').textContent = cleanName;
+      
+      // Show inside Suite
+      document.getElementById('suiteGuestBadge').style.display = 'inline-block';
+      document.getElementById('suiteGuestNameText').textContent = cleanName;
+      
+      // Pre-fill Dua name box
+      document.getElementById('guestName').value = cleanName;
+      
+      // Update Page Title
+      document.title = `Invitation for ${cleanName} · Saad & Khadija`;
     }
 
     const firebaseConfig = {
