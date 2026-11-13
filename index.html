@@ -143,26 +143,45 @@
       z-index: 3;
     }
 
+    /* UPDATED: envelope names area — now host name + invited son */
     .env-names {
       position: relative;
       z-index: 3;
       margin-bottom: 2.2rem;
     }
 
-    .env-names h1 {
+    .env-host-name {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 3.2rem;
+      font-size: 2.2rem;
+      color: var(--text-main);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .env-invite-line {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--border-rose);
+      margin: 0.9rem 0 0.4rem;
+    }
+
+    .env-son-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.6rem;
       color: var(--text-main);
       line-height: 1.15;
     }
 
-    .env-names .amp {
+    .env-son-name .amp {
       font-family: 'Great Vibes', cursive;
       font-size: 2.8rem;
       color: var(--border-rose);
       display: block;
-      margin: 0.3rem 0;
+      margin: 0.2rem 0;
     }
 
     .wax-seal-container {
@@ -354,30 +373,42 @@
       line-height: 1.3;
     }
 
+    /* UPDATED: couple banner — host name and son/bride names */
     .suite-couple-banner {
       margin: 0.8rem auto 2rem;
       padding-bottom: 1.5rem;
       border-bottom: 2px solid rgba(212, 191, 168, 0.45);
     }
 
-    .suite-together {
-      font-size: 0.78rem;
+    .suite-host-name {
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--border-rose);
+      font-size: 2.1rem;
+      color: var(--text-main);
+      line-height: 1.2;
       margin-bottom: 0.5rem;
     }
 
-    .suite-couple-names {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 2.6rem;
-      color: var(--text-main);
-      line-height: 1.15;
+    .suite-invite-text {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--border-rose);
+      margin: 0.8rem 0 0.3rem;
+      line-height: 1.5;
     }
 
-    .suite-couple-names .script-amp {
+    .suite-son-names {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      color: var(--text-main);
+      line-height: 1.15;
+      margin-top: 0.2rem;
+    }
+
+    .suite-son-names .script-amp {
       font-family: 'Great Vibes', cursive;
       font-size: 2.5rem;
       color: var(--border-rose);
@@ -754,10 +785,13 @@
       <div class="env-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
       <div class="env-kicker">Wedding Invitation</div>
       
+      <!-- UPDATED: HOST + SON NAMES -->
       <div class="env-names">
-        <h1>Saad Javed</h1>
-        <span class="amp">&amp;</span>
-        <h1>Khadija Jamil</h1>
+        <div class="env-host-name">Mr &amp; Mrs Muhammad Javed Iqbal</div>
+        <div class="env-invite-line">cordially invite you to celebrate</div>
+        <div class="env-son-name">
+          Saad Javed <span class="amp">&amp;</span> Khadija Jamil
+        </div>
       </div>
 
       <div class="wax-seal-container">
@@ -822,9 +856,13 @@
           </button>
         </div>
 
+        <!-- UPDATED: HOST BANNER + SON NAMES -->
         <div class="suite-couple-banner">
-          <div class="suite-together">Together with their families</div>
-          <div class="suite-couple-names">
+          <div class="suite-host-name">Mr &amp; Mrs Muhammad Javed Iqbal</div>
+          <div class="suite-invite-text">
+            We cordially invite you to join us in celebrating<br>the special occasion of our beloved son
+          </div>
+          <div class="suite-son-names">
             Saad Javed <span class="script-amp">&amp;</span> Khadija Jamil
           </div>
         </div>
