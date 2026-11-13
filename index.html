@@ -178,6 +178,16 @@
       margin-bottom: 2.2rem;
     }
 
+    /* NEW: "Together with their families" just above host name on envelope */
+    .env-together-line {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--border-rose);
+      margin-bottom: 0.7rem;
+    }
+
     .env-host-name {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
@@ -407,6 +417,16 @@
       margin: 0.8rem auto 2rem;
       padding-bottom: 1.5rem;
       border-bottom: 2px solid rgba(212, 191, 168, 0.45);
+    }
+
+    /* NEW: "Together with their families" just above host name inside suite */
+    .suite-together-line {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--border-rose);
+      margin-bottom: 0.6rem;
     }
 
     .suite-host-name {
@@ -815,6 +835,7 @@
       </div>
       
       <div class="env-names">
+        <div class="env-together-line">Together with their families</div>
         <div class="env-host-name">Mr &amp; Mrs Muhammad Javed Iqbal</div>
         <div class="env-invite-line">
           We cordially invite you to join us in celebrating the special occasion of our beloved son
@@ -836,10 +857,6 @@
         <button class="wax-tap-hint" onclick="unsealInvitation()">
           <i class="fas fa-sparkles"></i> Tap to Open
         </button>
-      </div>
-
-      <div class="env-footer-note">
-        Together with their families
       </div>
 
     </div>
@@ -893,6 +910,7 @@
         </div>
 
         <div class="suite-couple-banner">
+          <div class="suite-together-line">Together with their families</div>
           <div class="suite-host-name">Mr &amp; Mrs Muhammad Javed Iqbal</div>
           <div class="suite-invite-text">
             We cordially invite you to join us in celebrating<br>the special occasion of our beloved son
